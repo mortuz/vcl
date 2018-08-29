@@ -1,0 +1,85 @@
+.mt-4 {
+    margin-top: 1.25rem;
+}
+
+.float-right {
+    float: right;
+}
+.clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+* {
+    box-sizing: border-box;
+}
+.page-content {
+    min-height: 100vh;
+}
+.vcl-container {
+    float: left;
+}
+.vcl-container .vcl-header {
+    font-size: 1.2em;
+    line-height: 1.4em;
+    padding: 8px 12px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    width: 400px;
+    background-color: rgb(63,81,181);
+}
+
+.vcl-container .vcl-header  .material-icons {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+}
+
+.vcl-container .vcl-body {
+    height: 250px;
+    border: 1px solid rgb(63,81,181);
+    width: 400px;
+    text-align: center;
+}
+
+.vcl-container .vcl-attach {
+    font-size: 1.2em;
+    line-height: 1.4em;
+    padding: 8px 12px;
+    position: relative;
+    text-align: center;
+    /* color: #fff; */
+    width: 400px;
+    border: 1px solid rgb(63,81,181);
+    border-top-color: transparent;
+}
+
+.vcl-popover {
+    /* height: 300px; */
+    border: 1px solid rgb(63,81,181);
+    width: 300px;
+    text-align: left;
+    float: left;
+    margin-left: 20px;
+    position: relative;
+}
+.vcl-popover p {
+    padding-left: 20px;
+}
+
+.vcl-popover p:first-of-type {
+    margin-top: 15px;
+}
+
+.vcl-popover:before {
+    content: '';
+    display: block;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent;
+    position: absolute;
+    left: -21px;
+    top: 10px;
+    border-right-color: rgb(63,81,181);
+}

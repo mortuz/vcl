@@ -1,0 +1,60 @@
+<% include partials/header %>
+
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">VCL</span>
+      <div class="mdl-layout-spacer"></div>
+        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+        
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+          <li class="mdl-menu__item">Logout</li>
+        </ul>
+    </div>
+  </header>
+
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <!-- Your content goes here -->
+      <!-- Flat button with ripple -->
+
+      <div class="mdl-grid mt-4 clearfix">
+        
+        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect float-right" href="/create">Create</a>
+          <!-- forms list -->
+          <ul class="form-list-item mdl-list">
+            <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-icon">drafts</i>
+                Website 1 form
+              </span>
+            </li>
+            <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-icon">drafts</i>
+                Website 2 form
+              </span>
+            </li>
+            <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-icon">drafts</i>
+                Website 3 form
+              </span>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      
+
+      <% include partials/footer %>
+
+    </div>
+  </main>
+</div>
+
+<!-- <h2>form builder</h2> -->

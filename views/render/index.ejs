@@ -1,0 +1,57 @@
+<% include ../partials/header %>
+
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <!-- <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">VCL</span>
+                <div class="mdl-layout-spacer"></div>
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                    <li class="mdl-menu__item">Logout</li>
+                </ul>
+            </div>
+        </header> -->
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+                <!-- Flat button with ripple -->
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+
+                        <div class="vcl-container">
+                            <div class="vcl-header">
+                                <span contenteditable="false" class="header-text"><%= form.header %></span>
+                                <i class="material-icons" id="info">info</i>
+                            </div>
+                            <div class="vcl-body">
+                                this section will appear through API
+                            </div>
+                            <div class="vcl-attach"><span class="attach-text" contenteditable="false"><%= form.attach %></span>
+                                <i class="material-icons">attach_file</i></div>
+
+
+                        </div>
+                        <div class="mdl-tooltip mdl-tooltip--right mdl-tooltip--large" for="info">
+                            <p class="q1" contenteditable="false"><%= form.question1 %></p>
+                            <p class="q2" contenteditable="false"><%= form.question2 %></p>
+                            <p class="q3" contenteditable="false"><%= form.question3 %></p>
+                            <p class="q4" contenteditable="false"><%= form.question4 %></p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+                <!-- <% include ../partials/footer %> -->
+
+            </div>
+        </main>
+    </div>

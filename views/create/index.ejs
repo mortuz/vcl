@@ -1,0 +1,140 @@
+<% include ../partials/header %>
+
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title">VCL</span>
+                <div class="mdl-layout-spacer"></div>
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                    <li class="mdl-menu__item">Logout</li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+                <!-- Flat button with ripple -->
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+                        <h2>Customize widget</h2>
+
+                        <div class="vcl-container">
+                            <div class="vcl-header">
+                                <span contenteditable="true" class="header-text">Record your video cover letter</span>
+                                <i class="material-icons">info</i>
+                            </div>
+                            <div class="vcl-body">
+                                this section will appear through API
+                            </div>
+                            <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
+
+                            
+                        </div>
+                        <div class="vcl-popover">
+                            <p class="q1" contenteditable="true">Ask our first question</p>
+                            <p class="q2" contenteditable="true">Ask our second question</p>
+                            <p class="q3" contenteditable="true">Ask our second question</p>
+                            <p class="q4" contenteditable="true">Ask our second question</p>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+
+
+                <% if ( typeof id != 'undefined' && id) { %>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+                            &lt;script&gt;
+                                var iframe = document.createElement('iframe');
+                                document.body.appendChild(iframe);
+                                iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
+                                iframe.width = '400';
+                                iframe.height = '400';
+                            &lt;/script&gt;
+                        </div>
+                    </div>
+                <% } else { %>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+                        <button id="generate" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            Generate link
+                        </button>
+                    </div>
+                </div>
+                <% } %>
+                <!-- <% include ../partials/footer %> -->
+
+            </div>
+        </main>
+    </div>
+<script>
+    var generateBtn = document.getElementById('generate');
+    generateBtn.onclick = function() {
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '/create');
+
+        // header 
+        var widgetHeader = document.createElement('input')
+        var headerText = document.querySelector('.header-text');
+        widgetHeader.setAttribute('type', 'hidden');
+        widgetHeader.setAttribute('name', 'header');
+        widgetHeader.value = headerText.innerHTML;
+        form.appendChild(widgetHeader);
+
+        // attach
+        var widgetAttachText = document.createElement('input')
+        var attachText = document.querySelector('.attach-text');
+        widgetAttachText.setAttribute('type', 'hidden');
+        widgetAttachText.setAttribute('name', 'attach');
+        widgetAttachText.value = attachText.innerHTML;
+        form.appendChild(widgetAttachText);
+
+        // question 1
+        var q1Text = document.createElement('input')
+        var q1 = document.querySelector('.q1');
+        q1Text.setAttribute('type', 'hidden');
+        q1Text.setAttribute('name', 'q1');
+        q1Text.value = q1.innerHTML;
+        form.appendChild(q1Text);
+
+        // question 2
+        var q2Text = document.createElement('input')
+        var q2 = document.querySelector('.q2');
+        q2Text.setAttribute('type', 'hidden');
+        q2Text.setAttribute('name', 'q2');
+        q2Text.value = q2.innerHTML;
+        form.appendChild(q2Text);
+
+        // question 3
+        var q3Text = document.createElement('input')
+        var q3 = document.querySelector('.q3');
+        q3Text.setAttribute('type', 'hidden');
+        q3Text.setAttribute('name', 'q3');
+        q3Text.value = q3.innerHTML;
+        form.appendChild(q3Text);
+
+        // question 4
+        var q4Text = document.createElement('input')
+        var q4 = document.querySelector('.q4');
+        q4Text.setAttribute('type', 'hidden');
+        q4Text.setAttribute('name', 'q4');
+        q4Text.value = q4.innerHTML;
+        form.appendChild(q4Text);
+
+        // submit
+        document.body.appendChild(form);
+        form.submit();
+    }
+    
+</script>
+    <!-- <h2>form builder</h2> -->

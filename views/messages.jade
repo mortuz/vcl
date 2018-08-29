@@ -1,0 +1,11 @@
+extends layout
+
+block content
+	.messages(class=type)
+		p
+			case type
+				when 'success'
+					i.fa.fa-check
+				when 'error'
+					i.fa.fa-exclamation-circle
+			| #{message}
