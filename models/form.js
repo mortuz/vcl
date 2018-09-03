@@ -5,6 +5,8 @@ mongoose.set('useCreateIndex', true)
 
 var FormSchema = new Schema({
     // id
+    name: {type: String, required: true},
+    jobs: {type: String },
     header: { type: String, require: true },
     attach: { type: String, required: true },
     question1: { type: String, required: true },

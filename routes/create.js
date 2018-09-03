@@ -9,6 +9,8 @@ router.get('/', function (req, res){
 router.post('/', function(req, res) {
     console.log(req.body.header);
     var form = new Form();
+    form.name = req.body.name || 'Untitled';
+    form.jobs = req.body.jobs;
     form.header = req.body.header;
     form.attach = req.body.attach;
     form.question1 = req.body.q1;

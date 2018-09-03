@@ -27,24 +27,16 @@
           <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect float-right" href="/create">Create</a>
           <!-- forms list -->
           <ul class="form-list-item mdl-list">
-            <li class="mdl-list__item">
-              <span class="mdl-list__item-primary-content">
-                <i class="material-icons mdl-list__item-icon">drafts</i>
-                Website 1 form
-              </span>
-            </li>
-            <li class="mdl-list__item">
-              <span class="mdl-list__item-primary-content">
-                <i class="material-icons mdl-list__item-icon">drafts</i>
-                Website 2 form
-              </span>
-            </li>
-            <li class="mdl-list__item">
-              <span class="mdl-list__item-primary-content">
-                <i class="material-icons mdl-list__item-icon">drafts</i>
-                Website 3 form
-              </span>
-            </li>
+
+            <% forms.forEach(function(form, index) { %>
+              <li class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                  <i class="material-icons mdl-list__item-icon">drafts</i>
+                  <%= form.name%>
+                </span>
+              </li>
+            <% }) %>
+            
           </ul>
 
         </div>

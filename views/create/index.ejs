@@ -23,7 +23,28 @@
 
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+
                         <h2>Customize widget</h2>
+
+                        <div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input form_name" type="text" id="form_name">
+                                <label class="mdl-textfield__label" for="form_name">Form name</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <textarea class="mdl-textfield__input jobs" type="text" rows="5" id="jobs"></textarea>
+                                <label class="mdl-textfield__label" for="jobs">Job positions</label>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+                        
 
                         <div class="vcl-container">
                             <div class="vcl-header">
@@ -57,7 +78,7 @@
                                 var iframe = document.createElement('iframe');
                                 document.body.appendChild(iframe);
                                 iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
-                                iframe.width = '400';
+                                iframe.width = '1000';
                                 iframe.height = '400';
                             &lt;/script&gt;
                         </div>
@@ -78,63 +99,85 @@
     </div>
 <script>
     var generateBtn = document.getElementById('generate');
-    generateBtn.onclick = function() {
-        var form = document.createElement('form');
-        form.setAttribute('method', 'post');
-        form.setAttribute('action', '/create');
+    if(generateBtn) {
+        generateBtn.onclick = function () {
 
-        // header 
-        var widgetHeader = document.createElement('input')
-        var headerText = document.querySelector('.header-text');
-        widgetHeader.setAttribute('type', 'hidden');
-        widgetHeader.setAttribute('name', 'header');
-        widgetHeader.value = headerText.innerHTML;
-        form.appendChild(widgetHeader);
+            // create form
+            var form = document.createElement('form');
+            form.setAttribute('method', 'post');
+            form.setAttribute('action', '/create');
 
-        // attach
-        var widgetAttachText = document.createElement('input')
-        var attachText = document.querySelector('.attach-text');
-        widgetAttachText.setAttribute('type', 'hidden');
-        widgetAttachText.setAttribute('name', 'attach');
-        widgetAttachText.value = attachText.innerHTML;
-        form.appendChild(widgetAttachText);
+            // name
+            var widgetName = document.createElement('input')
+            var nameText = document.querySelector('.form_name');
+            widgetName.setAttribute('type', 'hidden');
+            widgetName.setAttribute('name', 'name');
+            widgetName.value = nameText.value;
+            form.appendChild(widgetName);
 
-        // question 1
-        var q1Text = document.createElement('input')
-        var q1 = document.querySelector('.q1');
-        q1Text.setAttribute('type', 'hidden');
-        q1Text.setAttribute('name', 'q1');
-        q1Text.value = q1.innerHTML;
-        form.appendChild(q1Text);
+            // jobs
+            var widgetJobs = document.createElement('input')
+            var jobsText = document.querySelector('.jobs');
+            widgetJobs.setAttribute('type', 'hidden');
+            widgetJobs.setAttribute('name', 'jobs');
+            var jobsArr = (jobsText.value).split('\n');
+            widgetJobs.value = JSON.stringify(jobsArr);
+            form.appendChild(widgetJobs);
 
-        // question 2
-        var q2Text = document.createElement('input')
-        var q2 = document.querySelector('.q2');
-        q2Text.setAttribute('type', 'hidden');
-        q2Text.setAttribute('name', 'q2');
-        q2Text.value = q2.innerHTML;
-        form.appendChild(q2Text);
+            // header 
+            var widgetHeader = document.createElement('input')
+            var headerText = document.querySelector('.header-text');
+            widgetHeader.setAttribute('type', 'hidden');
+            widgetHeader.setAttribute('name', 'header');
+            widgetHeader.value = headerText.innerHTML;
+            form.appendChild(widgetHeader);
 
-        // question 3
-        var q3Text = document.createElement('input')
-        var q3 = document.querySelector('.q3');
-        q3Text.setAttribute('type', 'hidden');
-        q3Text.setAttribute('name', 'q3');
-        q3Text.value = q3.innerHTML;
-        form.appendChild(q3Text);
+            // attach
+            var widgetAttachText = document.createElement('input')
+            var attachText = document.querySelector('.attach-text');
+            widgetAttachText.setAttribute('type', 'hidden');
+            widgetAttachText.setAttribute('name', 'attach');
+            widgetAttachText.value = attachText.innerHTML;
+            form.appendChild(widgetAttachText);
 
-        // question 4
-        var q4Text = document.createElement('input')
-        var q4 = document.querySelector('.q4');
-        q4Text.setAttribute('type', 'hidden');
-        q4Text.setAttribute('name', 'q4');
-        q4Text.value = q4.innerHTML;
-        form.appendChild(q4Text);
+            // question 1
+            var q1Text = document.createElement('input')
+            var q1 = document.querySelector('.q1');
+            q1Text.setAttribute('type', 'hidden');
+            q1Text.setAttribute('name', 'q1');
+            q1Text.value = q1.innerHTML;
+            form.appendChild(q1Text);
 
-        // submit
-        document.body.appendChild(form);
-        form.submit();
-    }
+            // question 2
+            var q2Text = document.createElement('input')
+            var q2 = document.querySelector('.q2');
+            q2Text.setAttribute('type', 'hidden');
+            q2Text.setAttribute('name', 'q2');
+            q2Text.value = q2.innerHTML;
+            form.appendChild(q2Text);
+
+            // question 3
+            var q3Text = document.createElement('input')
+            var q3 = document.querySelector('.q3');
+            q3Text.setAttribute('type', 'hidden');
+            q3Text.setAttribute('name', 'q3');
+            q3Text.value = q3.innerHTML;
+            form.appendChild(q3Text);
+
+            // question 4
+            var q4Text = document.createElement('input')
+            var q4 = document.querySelector('.q4');
+            q4Text.setAttribute('type', 'hidden');
+            q4Text.setAttribute('name', 'q4');
+            q4Text.value = q4.innerHTML;
+            form.appendChild(q4Text);
+
+            // submit
+            document.body.appendChild(form);
+            form.submit();
+        }
+        
+    };
     
 </script>
     <!-- <h2>form builder</h2> -->

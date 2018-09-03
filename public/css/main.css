@@ -41,6 +41,7 @@
     border: 1px solid rgb(63,81,181);
     width: 400px;
     text-align: center;
+    position: relative;
 }
 
 .vcl-container .vcl-attach {
@@ -68,6 +69,15 @@
     padding-left: 20px;
 }
 
+.vcl-w.vcl-popover {
+    background: #ffffff;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    display: none;
+    color: #000;
+    z-index: 200000;
+}
 .vcl-popover p:first-of-type {
     margin-top: 15px;
 }
@@ -82,4 +92,16 @@
     left: -21px;
     top: 10px;
     border-right-color: rgb(63,81,181);
+}
+
+.vcl-w.vcl-popover::before {
+    border-color: transparent;
+    border-right-color: rgb(63,81,181);
+    right: 5px;
+    top: -20px;
+    left: auto;
+    transform: rotate(90deg);
+}
+.vcl-header  .material-icons:hover + .vcl-w.vcl-popover {
+    display: block;
 }
