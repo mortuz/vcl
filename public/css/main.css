@@ -105,3 +105,32 @@
 .vcl-header  .material-icons:hover + .vcl-w.vcl-popover {
     display: block;
 }
+
+.full-width {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.full-width .mdl-textfield__input {
+    padding: 4px 8px;
+}
+
+.full-width label {
+    left: 8px;
+}
+
+.other-job-input {
+    margin-top: -16px;
+    padding: 8px;
+    border: 1px solid rgb(63,81,181);
+    display: none;
+}
+.other-job-input.show {
+    display: block;
+}
+
+.job-select {
+    border: 1px solid rgb(63,81,181);
+    border-top-color: transparent;
+}

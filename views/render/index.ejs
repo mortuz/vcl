@@ -2,19 +2,6 @@
 
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <!-- <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">VCL</span>
-                <div class="mdl-layout-spacer"></div>
-                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-                    <i class="material-icons">more_vert</i>
-                </button>
-
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-                    <li class="mdl-menu__item">Logout</li>
-                </ul>
-            </div>
-        </header> -->
 
         <main class="mdl-layout__content">
             <div class="page-content">
@@ -51,7 +38,27 @@
                             <div class="vcl-attach"><span class="attach-text" contenteditable="false"><%= form.attach %></span>
                                 <i class="material-icons">attach_file</i>
                             </div>
+                            
+                            <div class="job-select">
+                                <div class="mdl-textfield mdl-js-textfield getmdl-select full-width">
+                                    <input type="text" class="mdl-textfield__input" id="job" readonly>
+                                    <input type="hidden" name="job" id="selected-job">
+                                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                    <label for="job" class="mdl-textfield__label">Choose job</label>
+                                    <ul for="job" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="job-ul">
 
+                                        <% JSON.parse(form.jobs).forEach(function(job, index) { %>
+                                            <li class="mdl-menu__item" data-val="<%= job %>"><%= job %></li>
+
+                                        <% }) %>
+
+                                        <li class="mdl-menu__item" data-val="0" id="other-job">Other</li>
+                                    </ul>
+                                </div>
+                                    
+                            </div>
+
+                            <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input">
                             
                         </div>
 
@@ -68,3 +75,19 @@
             </div>
         </main>
     </div>
+
+    <script>
+        var jobChanged = function (status) {
+            var selectedJob = document.getElementById('selected-job');
+            var el = document.getElementById('other-job-input');
+            if (selectedJob.value == '0') {
+                el.classList.add('show');
+            }
+            else {
+                el.classList.remove('show')
+            }
+        }
+
+        // document.getElementById('job-ul').addEventListener('click', jobChanged(this));
+        document.getElementById('job-ul').onclick = jobChanged;
+    </script>
