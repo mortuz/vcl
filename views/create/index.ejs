@@ -20,9 +20,8 @@
             <div class="page-content">
                 <!-- Your content goes here -->
                 <!-- Flat button with ripple -->
-
                 <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+                    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
 
                         <h2>Customize widget</h2>
 
@@ -42,7 +41,50 @@
 
                         
 
+                    </div> <!-- /.mdl-cell -->
+
+                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--12-col-tablet">
+                         <!-- accent color -->
+                        <h3>Theme</h3>
+                         <div class="colour-container">
+                             <label for="theme">Theme colour</label>
+                            <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColourChanged(this.value)">
+                         </div>
+                        <!-- input colors -->
+                        <h3>Inputs</h3>
+                        <div class="colour-container">
+                            <label for="pop_text">Text colour</label>
+                            <input type="color" onchange="inputTextColourChanged(this.value)" name="pop_text" id="pop_text" value="#000000">
+                        </div>
+                        
+                        <div class="colour-container">
+                            <label for="pop_bg">Background colour</label>
+                            <input type="color" onchange="inputTextBackgroundColourChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
+                        </div>
+                        
                     </div>
+
+                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--12-col-tablet">
+                        <!-- header color -->
+                        <div class="colour-container">
+                            <h3>Header</h3>
+                            <label for="header">Text color</label>
+                            <input type="color" onchange="headerTextColourChanged(this.value)" name="header_colour" id="header_colour" value="#ffffff">
+                        </div>
+                        <!-- popover colors -->
+                        <h3>Popover</h3>
+                        
+                        <div class="colour-container">
+                            <label for="pop_text">Text colour</label>
+                            <input type="color" onchange="popoverTextColourChanged(this.value)" name="pop_text" id="pop_text" value="#000000">
+                        </div>
+                        
+                        <div class="colour-container">
+                            <label for="pop_bg">Background colour</label>
+                            <input type="color" onchange="popoverBackgroundColourChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
+                        </div>
+                    </div>
+
                     <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
                         
 
@@ -56,7 +98,15 @@
                             </div>
                             <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
 
-                            
+                            <div class="personal-info">
+                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" autocomplete="off">
+                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email" autocomplete="off">
+                            </div>
+
+                            <br>
+                            <button id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
+                                Submit
+                            </button>
                         </div>
                         <div class="vcl-popover">
                             <p class="q1" contenteditable="true">Ask our first question</p>
@@ -65,7 +115,6 @@
                             <p class="q4" contenteditable="true">Ask our second question</p>
                         </div>
 
-                        
 
                     </div>
                 </div>
@@ -179,5 +228,41 @@
         
     };
     
+    // colour picker functions
+    function themeColourChanged(value) {
+        document.querySelector('.vcl-header').style.backgroundColor = value;
+        document.querySelector('#submit-btn').style.backgroundColor = value; 
+        document.querySelector('.vcl-body').style.borderColor = value;
+        document.querySelector('.vcl-attach').style.borderColor = value;
+        document.querySelector('.vcl-popover').style.borderColor = value;
+        document.querySelector('.personal-info').style.borderColor = value;
+        document.querySelectorAll('.personal-info input').forEach(function(input) {
+            input.style.borderColor = value;
+        })
+    }
+
+    function inputTextColourChanged(value) {
+        document.querySelector('.vcl-attach').style.color = value;
+        document.querySelectorAll('.personal-info input').forEach(function (input) {
+            input.style.color = value;
+        });
+    }
+    function inputTextBackgroundColourChanged(value) {
+        document.querySelector('.vcl-attach').style.backgroundColor = value;
+        document.querySelectorAll('.personal-info input').forEach(function (input) {
+            input.style.backgroundColor = value;
+        });
+    }
+
+    function headerTextColourChanged(value) {
+        document.querySelector('.vcl-header').style.color = value;
+    }
+
+    function popoverBackgroundColourChanged(value) {
+        document.querySelector('.vcl-popover').style.backgroundColor = value;
+    }
+    function popoverTextColourChanged(value) {
+        document.querySelector('.vcl-popover').style.color = value;
+    }
 </script>
     <!-- <h2>form builder</h2> -->

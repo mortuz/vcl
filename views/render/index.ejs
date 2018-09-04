@@ -35,8 +35,10 @@
                                 this section will appear through API
 
                             </div>
-                            <div class="vcl-attach"><span class="attach-text" contenteditable="false"><%= form.attach %></span>
+                            <div class="vcl-attach" onclick="openAttachBox()" id="vcl-attach-div">
+                                <span class="attach-text" contenteditable="false"><%= form.attach %></span>
                                 <i class="material-icons">attach_file</i>
+                                <input type="file" name="resume" id="resume" accept=".doc,.docx,.pdf" hidden>
                             </div>
                             
                             <div class="job-select">
@@ -59,18 +61,20 @@
                             </div>
 
                             <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input">
+
+                            <div class="personal-info">
+                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name">
+                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email">
+                            </div>
+                            <br>
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
+                                Submit
+                            </button>
                             
                         </div>
 
-                        
-
-
-
                     </div>
                 </div>
-
-
-                
 
             </div>
         </main>
@@ -90,4 +94,16 @@
 
         // document.getElementById('job-ul').addEventListener('click', jobChanged(this));
         document.getElementById('job-ul').onclick = jobChanged;
+        
+        var resumeInput = document.getElementById('resume');
+        var attachText = document.querySelector('.attach-text');
+
+        function openAttachBox() {
+            resumeInput.click();
+        }
+
+        resumeInput.addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            attachText.textContent = fileName;
+        });
     </script>
