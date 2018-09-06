@@ -13,6 +13,14 @@ var FormSchema = new Schema({
     question2: { type: String, required: true },
     question3: { type: String, required: true },
     question4: { type: String, required: true },
+    colors: {
+        theme_color: { type: String, required: true },
+        input_text_color: { type: String, required: true },
+        input_bg_color: { type: String, required: true },
+        header_text_color: { type: String, required: true },
+        popover_text_color: { type: String, required: true },
+        popover_bg_color: { type: String, required: true }
+    }
 });
 
 module.exports = mongoose.model('Form', FormSchema);

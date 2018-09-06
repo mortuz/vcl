@@ -46,76 +46,76 @@
                     <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--12-col-tablet">
                          <!-- accent color -->
                         <h3>Theme</h3>
-                         <div class="colour-container">
+                         <div class="color-container">
                              <label for="theme">Theme colour</label>
-                            <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColourChanged(this.value)">
+                            <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColorChanged(this.value)">
                          </div>
                         <!-- input colors -->
                         <h3>Inputs</h3>
-                        <div class="colour-container">
-                            <label for="pop_text">Text colour</label>
-                            <input type="color" onchange="inputTextColourChanged(this.value)" name="pop_text" id="pop_text" value="#000000">
+                        <div class="color-container">
+                            <label for="input_text">Text color</label>
+                            <input type="color" onchange="inputTextColorChanged(this.value)" name="input_text" id="input_text" value="#222222">
                         </div>
                         
-                        <div class="colour-container">
-                            <label for="pop_bg">Background colour</label>
-                            <input type="color" onchange="inputTextBackgroundColourChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
+                        <div class="color-container">
+                            <label for="input_bg">Background color</label>
+                            <input type="color" onchange="inputTextBackgroundColorChanged(this.value)" name="input_bg" id="input_bg" value="#ffffff">
                         </div>
                         
                     </div>
 
                     <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--12-col-tablet">
                         <!-- header color -->
-                        <div class="colour-container">
+                        <div class="color-container">
                             <h3>Header</h3>
-                            <label for="header">Text color</label>
-                            <input type="color" onchange="headerTextColourChanged(this.value)" name="header_colour" id="header_colour" value="#ffffff">
+                            <label for="header_color">Text color</label>
+                            <input type="color" onchange="headerTextColorChanged(this.value)" name="header_color" id="header_color" value="#ffffff">
                         </div>
                         <!-- popover colors -->
                         <h3>Popover</h3>
                         
-                        <div class="colour-container">
-                            <label for="pop_text">Text colour</label>
-                            <input type="color" onchange="popoverTextColourChanged(this.value)" name="pop_text" id="pop_text" value="#000000">
+                        <div class="color-container">
+                            <label for="pop_text">Text color</label>
+                            <input type="color" onchange="popoverTextColorChanged(this.value)" name="pop_text" id="pop_text" value="#222222">
                         </div>
                         
-                        <div class="colour-container">
-                            <label for="pop_bg">Background colour</label>
-                            <input type="color" onchange="popoverBackgroundColourChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
+                        <div class="color-container">
+                            <label for="pop_bg">Background color</label>
+                            <input type="color" onchange="popoverBackgroundColorChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
                         </div>
                     </div>
 
                     <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
-                        
-
-                        <div class="vcl-container">
-                            <div class="vcl-header">
-                                <span contenteditable="true" class="header-text">Record your video cover letter</span>
-                                <i class="material-icons">info</i>
+                        <hr>
+                        <div id="widget">
+                            <div class="vcl-container">
+                                <div class="vcl-header">
+                                    <span contenteditable="true" class="header-text">Record your video cover letter</span>
+                                    <i class="material-icons">info</i>
+                                </div>
+                                <div class="vcl-body">
+                                    this section will appear through API
+                                </div>
+                                <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
+                            
+                                <div class="personal-info">
+                                    <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" autocomplete="off">
+                                    <input class="email full-width" type="email" placeholder="Your email" name="email" id="email" autocomplete="off">
+                                </div>
+                            
+                                <br>
+                                <button id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
+                                    Submit
+                                </button>
                             </div>
-                            <div class="vcl-body">
-                                this section will appear through API
+                            <div class="vcl-popover">
+                                <p class="q1" contenteditable="true">Ask our first question</p>
+                                <p class="q2" contenteditable="true">Ask our second question</p>
+                                <p class="q3" contenteditable="true">Ask our second question</p>
+                                <p class="q4" contenteditable="true">Ask our second question</p>
                             </div>
-                            <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
-
-                            <div class="personal-info">
-                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" autocomplete="off">
-                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email" autocomplete="off">
-                            </div>
-
-                            <br>
-                            <button id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
-                                Submit
-                            </button>
                         </div>
-                        <div class="vcl-popover">
-                            <p class="q1" contenteditable="true">Ask our first question</p>
-                            <p class="q2" contenteditable="true">Ask our second question</p>
-                            <p class="q3" contenteditable="true">Ask our second question</p>
-                            <p class="q4" contenteditable="true">Ask our second question</p>
-                        </div>
-
-
+                        <hr>
                     </div>
                 </div>
 
@@ -221,6 +221,49 @@
             q4Text.value = q4.innerHTML;
             form.appendChild(q4Text);
 
+            // color inputs
+            var themeColor = document.createElement('input')
+            var themeInput = document.querySelector('#theme');
+            themeColor.setAttribute('type', 'hidden');
+            themeColor.setAttribute('name', 'theme_color');
+            themeColor.value = themeInput.value;
+            form.appendChild(themeColor);
+
+            var inputColor = document.createElement('input')
+            var textColorInput = document.querySelector('#input_text');
+            inputColor.setAttribute('type', 'hidden');
+            inputColor.setAttribute('name', 'input_text_color');
+            inputColor.value = textColorInput.value;
+            form.appendChild(inputColor);
+
+            var inputBgColor = document.createElement('input')
+            var textBgInput = document.querySelector('#input_bg');
+            inputBgColor.setAttribute('type', 'hidden');
+            inputBgColor.setAttribute('name', 'input_bg_color');
+            inputBgColor.value = textBgInput.value;
+            form.appendChild(inputBgColor);
+
+            var headerTextColor = document.createElement('input')
+            var headerTextColorInput = document.querySelector('#header_color');
+            headerTextColor.setAttribute('type', 'hidden');
+            headerTextColor.setAttribute('name', 'header_text_color');
+            headerTextColor.value = headerTextColorInput.value;
+            form.appendChild(headerTextColor);
+
+            var popoverTextColor = document.createElement('input')
+            var popoverTextColorInput = document.querySelector('#pop_text');
+            popoverTextColor.setAttribute('type', 'hidden');
+            popoverTextColor.setAttribute('name', 'popover_text_color');
+            popoverTextColor.value = popoverTextColorInput.value;
+            form.appendChild(popoverTextColor);
+
+            var popoverBgColor = document.createElement('input')
+            var popoverBgColorInput = document.querySelector('#pop_bg');
+            popoverBgColor.setAttribute('type', 'hidden');
+            popoverBgColor.setAttribute('name', 'popover_bg_color');
+            popoverBgColor.value = popoverBgColorInput.value;
+            form.appendChild(popoverBgColor);
+
             // submit
             document.body.appendChild(form);
             form.submit();
@@ -228,8 +271,8 @@
         
     };
     
-    // colour picker functions
-    function themeColourChanged(value) {
+    // color picker functions
+    function themeColorChanged(value) {
         document.querySelector('.vcl-header').style.backgroundColor = value;
         document.querySelector('#submit-btn').style.backgroundColor = value; 
         document.querySelector('.vcl-body').style.borderColor = value;
@@ -241,27 +284,29 @@
         })
     }
 
-    function inputTextColourChanged(value) {
+    function inputTextColorChanged(value) {
         document.querySelector('.vcl-attach').style.color = value;
         document.querySelectorAll('.personal-info input').forEach(function (input) {
             input.style.color = value;
+            input.setAttribute('data-color', value);
         });
     }
-    function inputTextBackgroundColourChanged(value) {
+    function inputTextBackgroundColorChanged(value) {
         document.querySelector('.vcl-attach').style.backgroundColor = value;
         document.querySelectorAll('.personal-info input').forEach(function (input) {
             input.style.backgroundColor = value;
         });
     }
 
-    function headerTextColourChanged(value) {
+    function headerTextColorChanged(value) {
         document.querySelector('.vcl-header').style.color = value;
+        document.querySelector('#submit-btn').style.color = value; 
     }
 
-    function popoverBackgroundColourChanged(value) {
+    function popoverBackgroundColorChanged(value) {
         document.querySelector('.vcl-popover').style.backgroundColor = value;
     }
-    function popoverTextColourChanged(value) {
+    function popoverTextColorChanged(value) {
         document.querySelector('.vcl-popover').style.color = value;
     }
 </script>

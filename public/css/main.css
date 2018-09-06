@@ -50,20 +50,23 @@
     padding: 8px 12px;
     position: relative;
     text-align: center;
-    /* color: #fff; */
     width: 400px;
     border: 1px solid rgb(63,81,181);
     border-top: none;
 }
 
 .vcl-popover {
-    /* height: 300px; */
     border: 1px solid rgb(63,81,181);
     width: 300px;
     text-align: left;
     float: left;
     margin-left: 20px;
     position: relative;
+}
+#widget::after {
+    content: '';
+    display: table;
+    clear: both;
 }
 .vcl-popover p {
     padding-left: 20px;
@@ -96,7 +99,7 @@
 
 .vcl-w.vcl-popover::before {
     border-color: transparent;
-    border-right-color: rgb(63,81,181);
+    border-right-color: inherit;
     right: 5px;
     top: -20px;
     left: auto;
@@ -154,7 +157,7 @@
     border-top: 1px solid rgb(63,81,181);
 }
 
-.colour-container label{
+.color-container label{
     width: 120px;
     display: inline-block;
     margin-bottom: 20px;

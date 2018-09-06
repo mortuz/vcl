@@ -17,6 +17,13 @@ router.post('/', function(req, res) {
     form.question2 = req.body.q2;
     form.question3 = req.body.q3;
     form.question4 = req.body.q4;
+    form.question4 = req.body.q4;
+    form.colors.theme_color = req.body.theme_color;
+    form.colors.input_text_color = req.body.input_text_color;
+    form.colors.input_bg_color = req.body.input_bg_color;
+    form.colors.header_text_color = req.body.header_text_color;
+    form.colors.popover_text_color = req.body.popover_text_color;
+    form.colors.popover_bg_color = req.body.popover_bg_color;
 
     form.save((err, form) => {
         if (err) {

@@ -23,17 +23,14 @@ var render = require('./routes/render');
 var app = express();
 mongoose.Promise = global.Promise;
 
-// production
-// mongoose.connection.openUri('mongodb://idevia:ideviaAnimango@ds111804.mlab.com:11804/animango', function (err) {
-    //     // development
-    mongoose.connection.openUri('mongodb://localhost:27017/animango', { useNewUrlParser: true }, function(err) {
-        if (err) {
-            console.log('Not connected to database', err);
-        } else {
-            console.log('database connected');
-        }
-    });
-    // mongoose.set('useFindAndModify', false);
+// development
+mongoose.connection.openUri('mongodb://localhost:27017/vlc', { useNewUrlParser: true }, function(err) {
+    if (err) {
+        console.log('Not connected to database', err);
+    } else {
+        console.log('database connected');
+    }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

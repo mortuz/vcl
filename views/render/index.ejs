@@ -12,11 +12,11 @@
                     <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
 
                         <div class="vcl-container">
-                            <div class="vcl-header">
-                                <span contenteditable="false" class="header-text"><%= form.header %></span>
+                            <div class="vcl-header" style="background-color:<%= form.colors.theme_color %>">
+                                <span contenteditable="false" class="header-text" style="color:<%= form.colors.header_text_color %>"><%= form.header %></span>
                                 <i class="material-icons" id="info">info</i>
 
-                                <div class="vcl-w vcl-popover" for="info">
+                                <div class="vcl-w vcl-popover" for="info"  style="border-color:<%= form.colors.theme_color %>; color:<%= form.colors.popover_text_color %>; background-color:<%= form.colors.popover_bg_color %>">
                                     <p class="q1" contenteditable="false">
                                         <%= form.question1 %>
                                     </p>
@@ -31,17 +31,18 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="vcl-body">
+                            <div class="vcl-body" style="border-color:<%= form.colors.theme_color %>">
                                 this section will appear through API
 
                             </div>
-                            <div class="vcl-attach" onclick="openAttachBox()" id="vcl-attach-div">
+                            <div class="vcl-attach" onclick="openAttachBox()" id="vcl-attach-div" style="border-color:<%= form.colors.theme_color %>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
                                 <span class="attach-text" contenteditable="false"><%= form.attach %></span>
                                 <i class="material-icons">attach_file</i>
                                 <input type="file" name="resume" id="resume" accept=".doc,.docx,.pdf" hidden>
                             </div>
                             
-                            <div class="job-select">
+                            <!-- <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input" style="background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>"> -->
+                            <div class="job-select" style="border-color:<%= form.colors.theme_color%>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
                                 <div class="mdl-textfield mdl-js-textfield getmdl-select full-width">
                                     <input type="text" class="mdl-textfield__input" id="job" readonly>
                                     <input type="hidden" name="job" id="selected-job">
@@ -60,14 +61,14 @@
                                     
                             </div>
 
-                            <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input">
+                            <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input" style="border-color:<%= form.colors.theme_color%>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
 
-                            <div class="personal-info">
-                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name">
-                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email">
+                            <div class="personal-info"  style="border-color:<%= form.colors.theme_color %>">
+                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" style=";background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
+                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email"  style="border-top-color:<%= form.colors.theme_color %>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
                             </div>
                             <br>
-                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right"style="background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
                                 Submit
                             </button>
                             
