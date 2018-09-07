@@ -162,3 +162,7 @@
     display: inline-block;
     margin-bottom: 20px;
 }
+.mdl-textfield {
+    width: 100%;
+    max-width: 400px;
+}
