@@ -1,158 +1,231 @@
 <% include ../partials/header %>
 
-    <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">VCL</span>
-                <div class="mdl-layout-spacer"></div>
-                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">VLC</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <!-- <a class="nav-link" href="#"><i class="material-icons">more_vert</i></a> -->
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
                     <i class="material-icons">more_vert</i>
-                </button>
-
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-                    <li class="mdl-menu__item">Logout</li>
-                </ul>
-            </div>
-        </header>
-
-        <main class="mdl-layout__content">
-            <div class="page-content">
-                <!-- Your content goes here -->
-                <!-- Flat button with ripple -->
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
-
-                        <h2>Customize widget</h2>
-
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input form_name" type="text" id="form_name">
-                                <label class="mdl-textfield__label" for="form_name">Form name</label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input jobs" type="text" rows="5" id="jobs"></textarea>
-                                <label class="mdl-textfield__label" for="jobs">Job positions</label>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input recipients" type="text" id="recipients">
-                                <label class="mdl-textfield__label" for="recipients">Where should all the emails go? (semicolon separated)</label>
-                            </div>
-                        </div>
-
-                        
-
-                    </div> <!-- /.mdl-cell -->
-
-                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--12-col-tablet">
-                         <!-- accent color -->
-                        <h3>Theme</h3>
-                         <div class="color-container">
-                             <label for="theme">Theme colour</label>
-                            <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColorChanged(this.value)">
-                         </div>
-                        <!-- input colors -->
-                        <h3>Inputs</h3>
-                        <div class="color-container">
-                            <label for="input_text">Text color</label>
-                            <input type="color" onchange="inputTextColorChanged(this.value)" name="input_text" id="input_text" value="#222222">
-                        </div>
-                        
-                        <div class="color-container">
-                            <label for="input_bg">Background color</label>
-                            <input type="color" onchange="inputTextBackgroundColorChanged(this.value)" name="input_bg" id="input_bg" value="#ffffff">
-                        </div>
-                        
-                    </div>
-
-                    <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--12-col-tablet">
-                        <!-- header color -->
-                        <div class="color-container">
-                            <h3>Header</h3>
-                            <label for="header_color">Text color</label>
-                            <input type="color" onchange="headerTextColorChanged(this.value)" name="header_color" id="header_color" value="#ffffff">
-                        </div>
-                        <!-- popover colors -->
-                        <h3>Popover</h3>
-                        
-                        <div class="color-container">
-                            <label for="pop_text">Text color</label>
-                            <input type="color" onchange="popoverTextColorChanged(this.value)" name="pop_text" id="pop_text" value="#222222">
-                        </div>
-                        
-                        <div class="color-container">
-                            <label for="pop_bg">Background color</label>
-                            <input type="color" onchange="popoverBackgroundColorChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
-                        </div>
-                    </div>
-
-                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
-                        <hr>
-                        <div id="widget">
-                            <div class="vcl-container">
-                                <div class="vcl-header">
-                                    <span contenteditable="true" class="header-text">Record your video cover letter</span>
-                                    <i class="material-icons">info</i>
-                                </div>
-                                <div class="vcl-body">
-                                    this section will appear through API
-                                </div>
-                                <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
-                            
-                                <div class="personal-info">
-                                    <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" autocomplete="off">
-                                    <input class="email full-width" type="email" placeholder="Your email" name="email" id="email" autocomplete="off">
-                                </div>
-                            
-                                <br>
-                                <button id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
-                                    Submit
-                                </button>
-                            </div>
-                            <div class="vcl-popover">
-                                <p class="q1" contenteditable="true">Ask our first question</p>
-                                <p class="q2" contenteditable="true">Ask our second question</p>
-                                <p class="q3" contenteditable="true">Ask our second question</p>
-                                <p class="q4" contenteditable="true">Ask our second question</p>
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Logout</a>
                 </div>
-
-
-                <% if ( typeof id != 'undefined' && id) { %>
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
-                            &lt;script&gt;
-                                var iframe = document.createElement('iframe');
-                                document.body.appendChild(iframe);
-                                iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
-                                iframe.width = '1000';
-                                iframe.height = '400';
-                            &lt;/script&gt;
-                        </div>
-                    </div>
-                <% } else { %>
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
-                        <button id="generate" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                            Generate link
-                        </button>
-                    </div>
-                </div>
-                <% } %>
-                <!-- <% include ../partials/footer %> -->
-
-            </div>
-        </main>
+            </li>
+            
+        </ul>
     </div>
+</nav>
+
+
+<main class="main-content mt-5">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4">
+
+                <h2>Customize widget</h2>
+
+                <div>
+                    <div class="form-group">
+                        <label for="name" class="bmd-label-floating">Widget name</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <h3>Job</h3>
+                        <!-- list of jobs here -->
+                        <div id="accordion" class="mb-3">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Job one
+                                        </button>
+                                    </h5>
+                                </div>
+                        
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                       We are looking for some experienced developers who are experienced with Bootstrap, jQuery and Angular.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            Job two
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        We are looking for some experienced developers who are experienced with PHP, Nodejs and Photoshop.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-raised" data-toggle="modal" data-target="#add-job-modal">
+                            Add job
+                        </button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="add-job-modal" tabindex="-1" role="dialog" aria-labelledby="add-job-modal"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="add-job-modal-title">Add job</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="job_title" class="bmd-label-floating">Title</label>
+                                            <input type="text" class="form-control" id="job_title">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="job_email" class="bmd-label-floating">Email 1</label>
+                                            <input type="text" class="form-control" id="job_email">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="job_email2" class="bmd-label-floating">Email 2</label>
+                                            <input type="text" class="form-control" id="job_email2">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="job_description" class="bmd-label-floating">Description</label>
+                                            <textarea class="form-control" rows="3" id="job_description"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary">add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div> <!-- /.mdl-cell -->
+
+            <div class="col-lg-4">
+                    <!-- accent color -->
+                <h3>Theme</h3>
+                    <div class="color-container">
+                        <label for="theme">Header background</label>
+                    <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColorChanged(this.value)">
+                    </div>
+
+                <div class="color-container">
+                    <label for="header_color">Header text</label>
+                    <input type="color" onchange="headerTextColorChanged(this.value)" name="header_color" id="header_color" value="#ffffff">
+                </div>
+
+                <div class="color-container">
+                    <label for="input_text">Text color</label>
+                    <input type="color" onchange="inputTextColorChanged(this.value)" name="input_text" id="input_text" value="#222222">
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <!-- popover colors -->
+                <h3>Tip box</h3>
+
+                <div class="color-container">
+                    <label for="pop_bg">Box background</label>
+                    <input type="color" onchange="popoverBackgroundColorChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
+                </div>
+                
+                <div class="color-container">
+                    <label for="pop_text">Box text</label>
+                    <input type="color" onchange="popoverTextColorChanged(this.value)" name="pop_text" id="pop_text" value="#222222">
+                </div>
+                
+            </div>
+
+            <div class="col-lg-12">
+                <hr>
+                <div id="widget">
+                    <div class="vcl-container">
+                        <div class="vcl-header">
+                            <span contenteditable="true" class="header-text">Record your video cover letter</span>
+                            <i class="material-icons">info</i>
+                        </div>
+                        <div class="vcl-body">
+                            this section will appear through API
+                        </div>
+                        <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
+                    
+                        <div class="personal-info">
+                            <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" autocomplete="off">
+                            <input class="email full-width" type="email" placeholder="Your email" name="email" id="email" autocomplete="off">
+                        </div>
+                    
+                        <br>
+                        <!-- <button id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
+                            Submit
+                        </button> -->
+                        <div class="btn btn-raised btn-primary float-right" id="submit-btn">Submit</div>
+                    </div>
+                    <div class="vcl-popover">
+                        <p class="q1" contenteditable="true">Ask our first question</p>
+                        <p class="q2" contenteditable="true">Ask our second question</p>
+                        <p class="q3" contenteditable="true">Ask our second question</p>
+                        <p class="q4" contenteditable="true">Ask our second question</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+
+        <% if ( typeof id != 'undefined' && id) { %>
+            <div class="row">
+                <div class="col-md-6">
+                    &lt;script&gt;
+                        var iframe = document.createElement('iframe');
+                        document.body.appendChild(iframe);
+                        iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
+                        iframe.width = '1000';
+                        iframe.height = '400';
+                    &lt;/script&gt;
+                </div>
+            </div>
+        <% } else { %>
+        <div class="row">
+            <div class="col-md-4">
+                <button id="generate" class="btn btn-primary">
+                    Generate link
+                </button>
+            </div>
+        </div>
+        <% } %>
+        <!-- <% include ../partials/footer %> -->
+
+    </div>
+</main>
 <script>
     var generateBtn = document.getElementById('generate');
     if(generateBtn) {

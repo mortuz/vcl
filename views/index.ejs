@@ -1,39 +1,45 @@
 <% include partials/header %>
 
 <!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">VCL</span>
-      <div class="mdl-layout-spacer"></div>
-        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-          <i class="material-icons">more_vert</i>
-        </button>
-        
-        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-          <li class="mdl-menu__item">Logout</li>
-        </ul>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">VLC</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <!-- <a class="nav-link" href="#"><i class="material-icons">more_vert</i></a> -->
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="material-icons">more_vert</i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Logout</a>
+          </div>
+        </li>
+  
+      </ul>
     </div>
-  </header>
+  </nav>
 
   <main class="mdl-layout__content">
-    <div class="page-content">
+    <div class="container">
       <!-- Your content goes here -->
       <!-- Flat button with ripple -->
 
-      <div class="mdl-grid mt-4 clearfix">
+      <div class="row mt-4 clearfix">
         
-        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
-          <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect float-right" href="/create">Create</a>
+        <div class="col-lg-12">
+          <a class="btn btn-default btn-raised float-right" href="/create">Create</a>
           <!-- forms list -->
-          <ul class="form-list-item mdl-list">
+          <ul class="list-group">
 
             <% forms.forEach(function(form, index) { %>
-              <li class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                  <i class="material-icons mdl-list__item-icon">drafts</i>
+              <li class="list-group-item">
+                <i class="material-icons mdl-list__item-icon">drafts</i>
                   <%= form.name%>
-                </span>
               </li>
             <% }) %>
             
@@ -43,10 +49,9 @@
       </div>
       
 
-      <% include partials/footer %>
+      <!-- <% include partials/footer %> -->
 
     </div>
   </main>
-</div>
 
 <!-- <h2>form builder</h2> -->
