@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var create = require('./routes/create');
 var render = require('./routes/render');
+var test = require('./routes/test');
 // var comic = require('./routes/comic');
 // var chapters = require('./routes/chapters');
 // var page = require('./routes/page');
@@ -22,9 +23,11 @@ var render = require('./routes/render');
 
 var app = express();
 mongoose.Promise = global.Promise;
+// var dbpath = "mongodb://localhost:27017/vlc";
+var dbpath = "mongodb://idevia:1devia@ds111963.mlab.com:11963/vcl-api";
 
 // development
-mongoose.connection.openUri('mongodb://localhost:27017/vlc', { useNewUrlParser: true }, function(err) {
+mongoose.connection.openUri(dbpath, { useNewUrlParser: true }, function(err) {
     if (err) {
         console.log('Not connected to database', err);
     } else {
@@ -49,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/create', create);
 app.use('/render', render);
+app.use('/test', test);
 // app.use('/comic', comic);
 // app.use('/chapters', chapters);
 // app.use('/page', page);
