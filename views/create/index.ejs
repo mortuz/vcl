@@ -28,17 +28,18 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-4">
 
+            <div class="col-md-4">
+                
                 <h2>Customize widget</h2>
-
+                
                 <div>
                     <div class="form-group">
                         <label for="name" class="bmd-label-floating">Widget name</label>
                         <input type="text" class="form-control" id="name">
                     </div>
                 </div>
-
+                
                 <div>
                     <div>
                         <h3>Job</h3>
@@ -53,25 +54,27 @@
                                         </button>
                                     </h5>
                                 </div>
-                        
+                
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                     <div class="card-body">
-                                       We are looking for some experienced developers who are experienced with Bootstrap, jQuery and Angular.
+                                        We are looking for some experienced developers who are experienced with Bootstrap, jQuery and
+                                        Angular.
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
                                     <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                            aria-controls="collapseTwo">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
                                             Job two
                                         </button>
                                     </h5>
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body">
-                                        We are looking for some experienced developers who are experienced with PHP, Nodejs and Photoshop.
+                                        We are looking for some experienced developers who are experienced with PHP, Nodejs and
+                                        Photoshop.
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +83,7 @@
                         <button type="button" class="btn btn-primary btn-raised" data-toggle="modal" data-target="#add-job-modal">
                             Add job
                         </button>
-                        
+                
                         <!-- Modal -->
                         <div class="modal fade" id="add-job-modal" tabindex="-1" role="dialog" aria-labelledby="add-job-modal"
                             aria-hidden="true">
@@ -93,27 +96,27 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-
+                
                                         <div class="form-group">
                                             <label for="job_title" class="bmd-label-floating">Title</label>
                                             <input type="text" class="form-control" id="job_title">
                                         </div>
-
+                
                                         <div class="form-group">
                                             <label for="job_email" class="bmd-label-floating">Email 1</label>
                                             <input type="text" class="form-control" id="job_email">
                                         </div>
-
+                
                                         <div class="form-group">
                                             <label for="job_email2" class="bmd-label-floating">Email 2</label>
                                             <input type="text" class="form-control" id="job_email2">
                                         </div>
-
+                
                                         <div class="form-group">
                                             <label for="job_description" class="bmd-label-floating">Description</label>
                                             <textarea class="form-control" rows="3" id="job_description"></textarea>
                                         </div>
-
+                
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -124,35 +127,28 @@
                         </div>
                     </div>
                 </div>
-
                 
-
-            </div> <!-- /.mdl-cell -->
-
-            <div class="col-lg-4">
                     <!-- accent color -->
-                <h3>Theme</h3>
+                    <h3>Theme</h3>
                     <div class="color-container">
                         <label for="theme">Header background</label>
-                    <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColorChanged(this.value)">
+                        <input type="color" name="theme" id="theme" value="#3f51b5" onchange="themeColorChanged(this.value)">
                     </div>
-
-                <div class="color-container">
-                    <label for="header_color">Header text</label>
-                    <input type="color" onchange="headerTextColorChanged(this.value)" name="header_color" id="header_color" value="#ffffff">
-                </div>
-
-                <div class="color-container">
-                    <label for="input_text">Text color</label>
-                    <input type="color" onchange="inputTextColorChanged(this.value)" name="input_text" id="input_text" value="#222222">
-                </div>
-
-            </div>
-
-            <div class="col-lg-4">
+                    
+                    <div class="color-container">
+                        <label for="header_color">Header text</label>
+                        <input type="color" onchange="headerTextColorChanged(this.value)" name="header_color" id="header_color" value="#ffffff">
+                    </div>
+                    
+                    <div class="color-container">
+                        <label for="input_text">Text color</label>
+                        <input type="color" onchange="inputTextColorChanged(this.value)" name="input_text" id="input_text" value="#222222">
+                    </div>
+                
+                <!-- </div> /.mdl-cell -->
                 <!-- popover colors -->
                 <h3>Tip box</h3>
-
+                
                 <div class="color-container">
                     <label for="pop_bg">Box background</label>
                     <input type="color" onchange="popoverBackgroundColorChanged(this.value)" name="pop_bg" id="pop_bg" value="#ffffff">
@@ -162,11 +158,11 @@
                     <label for="pop_text">Box text</label>
                     <input type="color" onchange="popoverTextColorChanged(this.value)" name="pop_text" id="pop_text" value="#222222">
                 </div>
-                
+
+
             </div>
 
-            <div class="col-lg-12">
-                <hr>
+             <div class="col-md-8">
                 <div id="widget">
                     <div class="vcl-container">
                         <div class="vcl-header">
@@ -177,16 +173,15 @@
                             this section will appear through API
                         </div>
                         <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
-                    
+                
                         <div class="personal-info">
                             <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" autocomplete="off">
                             <input class="email full-width" type="email" placeholder="Your email" name="email" id="email" autocomplete="off">
+                            <input class="phone full-width" type="text" placeholder="Your phone no" name="phone" id="phone" autocomplete="off">
                         </div>
-                    
+                
                         <br>
-                        <!-- <button id="submit-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right">
-                            Submit
-                        </button> -->
+                        
                         <div class="btn btn-raised btn-primary float-right" id="submit-btn">Submit</div>
                     </div>
                     <div class="vcl-popover">
@@ -196,9 +191,10 @@
                         <p class="q4" contenteditable="true">Ask our second question</p>
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
+
+        <hr>
 
 
         <% if ( typeof id != 'undefined' && id) { %>

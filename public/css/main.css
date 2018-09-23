@@ -140,6 +140,7 @@
 .personal-info {
     border: 1px solid rgb(63,81,181);
     border-top: none;
+    width: 400px;
 }
 
 .personal-info input {
@@ -158,7 +159,7 @@
 }
 
 .color-container label{
-    width: 120px;
+    width: 160px;
     display: inline-block;
     margin-bottom: 20px;
 }
