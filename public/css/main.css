@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    background: #fff;
+}
+label {
+    line-height: 1.6;
+}
 .mt-4 {
     margin-top: 1.25rem;
 }
