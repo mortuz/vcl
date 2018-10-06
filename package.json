@@ -19,6 +19,7 @@
     "mongoose": "^5.2.9",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.3",
+    "npm": "^6.4.1",
     "request": "^2.88.0",
     "serve-favicon": "^2.5.0"
   }

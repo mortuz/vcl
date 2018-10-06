@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var Form = require('../models/form');
+var Form = require('../../models/form');
 
 router.get('/', function (req, res){
-    res.render('create/index', { title: 'VCL' });
+    res.render('widget/create', { title: 'VCL' });
 });
 
 router.post('/', function(req, res) {
-    console.log(req.body.header);
+    // console.log(req.body.header);
     var form = new Form();
     form.name = req.body.name || 'Untitled';
     form.jobs = req.body.jobs;

@@ -8,7 +8,8 @@ var expressValidator = require('express-validator');
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
-var create = require('./routes/create');
+var create = require('./routes/widget/create');
+var widgetIndex = require('./routes/widget/index')
 var render = require('./routes/render');
 // var comic = require('./routes/comic');
 // var chapters = require('./routes/chapters');
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/create', create);
+app.use('/widget/', widgetIndex);
 app.use('/render', render);
 // app.use('/comic', comic);
 // app.use('/chapters', chapters);

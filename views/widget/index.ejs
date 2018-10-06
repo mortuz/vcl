@@ -1,0 +1,78 @@
+<% include ../partials/header %>
+
+<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">VLC</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <!-- <a class="nav-link" href="#"><i class="material-icons">more_vert</i></a> -->
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">more_vert</i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<main class="main-container mt-5">
+    <div class="container">
+
+        <div class="codes">
+        
+            <div class="row">
+                <div class="col-md-6 offset-md-3 mb-5">
+                    <div class="f1-steps">
+                        <div class="f1-progress">
+                            <div class="f1-progress-line" data-now-value="80%" data-number-of-steps="3" style="width: 80%;"></div>
+                        </div>
+                        <div class="f1-step activated">
+                            <div class="f1-step-icon"><i class="material-icons">account_box</i></div>
+                            <p>Register</p>
+                        </div>
+                        <div class="f1-step activated">
+                            <div class="f1-step-icon"><i class="material-icons">filter_list</i></div>
+                            <p>Customize</p>
+                        </div>
+                        <div class="f1-step active">
+                            <div class="f1-step-icon"><i class="material-icons">done_all</i></div>
+                            <p>Get code</p>
+                        </div>
+                    </div>
+                </div>
+        
+        
+            </div>
+        
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <pre><code class="javascript js-highlight">    &lt;script&gt;
+        var iframe = document.createElement('iframe');
+        document.body.appendChild(iframe);
+        iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
+        iframe.width = '1000';
+        iframe.height = '800';
+    &lt;/script&gt;
+                        </code></pre>
+
+                        <button class="btn btn-primary btn-raised">Copy code</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script>
+    $('.js-highlight').each(function (i, block) {
+        hljs.highlightBlock(block);
+    });
+</script>
