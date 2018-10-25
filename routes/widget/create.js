@@ -20,17 +20,22 @@ router.post('/', function(req, res) {
     form.question4 = req.body.q4;
     form.colors.theme_color = req.body.theme_color;
     form.colors.input_text_color = req.body.input_text_color;
-    form.colors.input_bg_color = req.body.input_bg_color;
+    // form.colors.input_bg_color = req.body.input_bg_color;
     form.colors.header_text_color = req.body.header_text_color;
     form.colors.popover_text_color = req.body.popover_text_color;
     form.colors.popover_bg_color = req.body.popover_bg_color;
+    form.user = req.session.user;
 
     form.save((err, form) => {
         if (err) {
+            res.render('widget/create', {
+                errors: err,
+                data: form
+            });
             console.log(err);
         } else {
             // console.log(form);
-            res.render('create/index', { id: form._id });
+            res.render('widget/index', { id: form._id });
         }
     })
     

@@ -8,8 +8,8 @@
                 <!-- Your content goes here -->
                 <!-- Flat button with ripple -->
 
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--12-col-tablet mdl-cell--2-offset-desktop">
+                <div class="container">
+                    <div class="col-md-6 offset-md-3">
 
                         <div class="vcl-container">
                             <div class="vcl-header" style="background-color:<%= form.colors.theme_color %>">
@@ -43,32 +43,37 @@
                             
                             <!-- <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input" style="background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>"> -->
                             <div class="job-select" style="border-color:<%= form.colors.theme_color%>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
-                                <div class="mdl-textfield mdl-js-textfield getmdl-select full-width">
-                                    <input type="text" class="mdl-textfield__input" id="job" readonly>
-                                    <input type="hidden" name="job" id="selected-job">
-                                    <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-                                    <label for="job" class="mdl-textfield__label">Choose job</label>
-                                    <ul for="job" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="job-ul">
+                                <div class="mdl-textfield mdl-js-textfield getmdl-select">
+                                    <!-- <input type="hidden" name="job" id="selected-job"> -->
+                                    <div for="job" class="mdl-menu mdl-menu--bottom-left mdl-js-menu" id="job-ul">
 
-                                        <% JSON.parse(form.jobs).forEach(function(job, index) { %>
-                                            <li class="mdl-menu__item" data-val="<%= job %>"><%= job %></li>
+                                        <select class="custom-select border-0" id="" onchange="jobChanged(this.value)">
+                                            <option selected value="">Choose job...</option>
+                                            <% JSON.parse(form.jobs).forEach(function(job, index) { %>
+                                                <option data-val="<%= job %>">
+                                                    <%= job.title %>
+                                                </option>                                            
+                                            <% }) %>
 
-                                        <% }) %>
-
-                                        <li class="mdl-menu__item" data-val="0" id="other-job">Other</li>
-                                    </ul>
+                                            <option value="0" data-val="0" id="other-job">Other</option>
+                                        </select>
+                                        
+                                        <input class="other-job-input border-0" type="text" placeholder="Specify job" id="other-job-input" style="border-color:<%= form.colors.theme_color%>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
+                                        
+                                        
+                                    </div>
                                 </div>
                                     
                             </div>
 
-                            <input class="other-job-input full-width" type="text" placeholder="Specify job" id="other-job-input" style="border-color:<%= form.colors.theme_color%>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
 
                             <div class="personal-info"  style="border-color:<%= form.colors.theme_color %>">
-                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" style=";background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
-                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email"  style="border-top-color:<%= form.colors.theme_color %>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
+                                <input class="name full-width" type="text" placeholder="Your name" name="name" id="name" style=";background-color: #fff;color:<%= form.colors.input_text_color %>">
+                                <input class="email full-width" type="email" placeholder="Your email" name="email" id="email"  style="border-top-color:<%= form.colors.theme_color %>;border-bottom-color:<%= form.colors.theme_color %>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
+                                <input class="phone full-width" type="email" placeholder="Your phone" name="phone" id="phone" autocomplete="off" style=";background-color: #fff;color:<%= form.colors.input_text_color %>">
                             </div>
                             <br>
-                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored float-right"style="background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
+                            <button type="submit" class="btn btn-raised float-right"style="background-color:<%= form.colors.theme_color %>;color:<%= form.colors.header_text_color %>">
                                 Submit
                             </button>
                             
@@ -83,18 +88,22 @@
 
     <script>
         var jobChanged = function (status) {
-            var selectedJob = document.getElementById('selected-job');
+            // var selectedJob = document.getElementById('selected-job');
             var el = document.getElementById('other-job-input');
-            if (selectedJob.value == '0') {
+            var selectBox = document.querySelector('.custom-select');
+            console.log(selectBox.value)
+            if (selectBox.value == '0') {
                 el.classList.add('show');
+                selectBox.classList.add('width-auto');
             }
             else {
-                el.classList.remove('show')
+                el.classList.remove('show');
+                selectBox.classList.remove('width-auto');
             }
         }
 
         // document.getElementById('job-ul').addEventListener('click', jobChanged(this));
-        document.getElementById('job-ul').onclick = jobChanged;
+        // document.getElementById('job-ul').onclick = jobChanged;
         
         var resumeInput = document.getElementById('resume');
         var attachText = document.querySelector('.attach-text');

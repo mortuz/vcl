@@ -1,27 +1,8 @@
 <% include ../partials/header %>
 
-<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">VLC</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <!-- <a class="nav-link" href="#"><i class="material-icons">more_vert</i></a> -->
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Logout</a>
-                </div>
-            </li>
-            
-        </ul>
-    </div>
-</nav>
+<% include ../partials/navigation %>
+<% include ../partials/flash %>
+
 
 
 <main class="main-content mt-5">
@@ -36,11 +17,11 @@
                     </div>
                     <div class="f1-step activated">
                         <div class="f1-step-icon"><i class="material-icons">account_box</i></div>
-                        <p>Register</p>
+                        <p>Register / Log in</p>
                     </div>
                     <div class="f1-step active">
                         <div class="f1-step-icon"><i class="material-icons">filter_list</i></div>
-                        <p>Customize</p>
+                        <p>Create / Edit</p>
                     </div>
                     <div class="f1-step">
                         <div class="f1-step-icon"><i class="material-icons">done_all</i></div>
@@ -58,7 +39,7 @@
                 <section>
                     <div class="form-group">
                         <label for="name" class="bmd-label-floating">Widget name</label>
-                        <input type="text" class="form-control" id="name">
+                        <input type="text" class="form-control" id="widget_name">
                     </div>
                 </section>
 
@@ -68,12 +49,12 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link" data-toggle="collapse" data-target="#theme-customize" aria-expanded="true"
                                     aria-controls="collapseOne">
-                                    Theme
+                                    <i class="material-icons add">add</i><i class="material-icons minus">remove</i> Theme
                                 </button>
                             </h5>
                         </div>
                 
-                        <div id="theme-customize" class="collapse" aria-labelledby="themeOptions" data-parent="#accordion">
+                        <div id="theme-customize" class="collapse show" aria-labelledby="themeOptions" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="color-container">
                                     <label for="theme">Header background</label>
@@ -97,7 +78,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#tip-box-customizer" aria-expanded="false"
                                     aria-controls="collapseTwo">
-                                    Tip Box
+                                    <i class="material-icons add">add</i><i class="material-icons minus">remove</i> Tip Box
                                 </button>
                             </h5>
                         </div>
@@ -120,7 +101,7 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#job-customizer"
                                     aria-expanded="false" aria-controls="collapseThree">
-                                    Job
+                                    <i class="material-icons add">add</i><i class="material-icons minus">remove</i> Job
                                 </button>
                             </h5>
                         </div>
@@ -225,12 +206,12 @@
         <% } else { %>
         <div class="row">
             <div class="col-md-4">
-                <!-- <button id="generate" class="btn btn-primary btn-raised mt-5">
+                <button id="generate" class="btn btn-primary btn-raised mt-5">
                     Get code
-                </button> -->
-                <a id="" href="/widget/ghp5aga13dasf554aew" class="btn btn-primary btn-raised mt-5">
+                </button>
+                <!-- <a id="" href="/widget/ghp5aga13dasf554aew" class="btn btn-primary btn-raised mt-5">
                     Get code
-                </a>
+                </a> -->
             </div>
         </div>
         <% } %>
@@ -252,17 +233,17 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="job_title" class="bmd-label-floating">Title</label>
+                    <label for="job_title" class="bmd-label-floating">Job title</label>
                     <input type="text" class="form-control" id="job_title">
                 </div>
 
                 <div class="form-group">
-                    <label for="job_email" class="bmd-label-floating">Email 1</label>
+                    <label for="job_email" class="bmd-label-floating">Email 1 (Where you want to receive applications?)</label>
                     <input type="text" class="form-control" id="job_email">
                 </div>
 
                 <div class="form-group">
-                    <label for="job_email2" class="bmd-label-floating">Email 2</label>
+                    <label for="job_email2" class="bmd-label-floating">Email 2 (Where you want to receive applications?)</label>
                     <input type="text" class="form-control" id="job_email2">
                 </div>
 
@@ -293,10 +274,15 @@
             html += `
                 <div class="card">
                     <div class="card-header" id="${job.title}">
-                        <h5 class="mb-0">
+                        <h5 class="mb-0 d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" data-toggle="collapse" data-target="#${job.id}">
                                 ${job.title}
                             </button>
+                            
+                            <span>
+                                <a href=""><i class="material-icons mr-3">edit</i></a>
+                                <a href=""><i class="material-icons mr-3">delete</i></a>
+                            </span>
                         </h5>
                     </div>
             
@@ -349,6 +335,7 @@
 
     if(generateBtn) {
         generateBtn.onclick = function () {
+            console.log('submit')
 
             // create form
             var form = document.createElement('form');
@@ -357,20 +344,20 @@
 
             // name
             var widgetName = document.createElement('input')
-            var nameText = document.querySelector('.form_name');
+            var nameText = document.querySelector('#widget_name');
             widgetName.setAttribute('type', 'hidden');
             widgetName.setAttribute('name', 'name');
             widgetName.value = nameText.value;
             form.appendChild(widgetName);
 
             // jobs
-            var widgetJobs = document.createElement('input')
-            var jobsText = document.querySelector('.jobs');
-            widgetJobs.setAttribute('type', 'hidden');
-            widgetJobs.setAttribute('name', 'jobs');
-            var jobsArr = (jobsText.value).split('\n');
-            widgetJobs.value = JSON.stringify(jobsArr);
-            form.appendChild(widgetJobs);
+            // var widgetJobs = document.createElement('input')
+            // var jobsText = document.querySelector('.jobs');
+            // widgetJobs.setAttribute('type', 'hidden');
+            // widgetJobs.setAttribute('name', 'jobs');
+            // var jobsArr = (jobsText.value).split('\n');
+            // widgetJobs.value = JSON.stringify(jobsArr);
+            // form.appendChild(widgetJobs);
 
             // header 
             var widgetHeader = document.createElement('input')
@@ -435,12 +422,12 @@
             inputColor.value = textColorInput.value;
             form.appendChild(inputColor);
 
-            var inputBgColor = document.createElement('input')
-            var textBgInput = document.querySelector('#input_bg');
-            inputBgColor.setAttribute('type', 'hidden');
-            inputBgColor.setAttribute('name', 'input_bg_color');
-            inputBgColor.value = textBgInput.value;
-            form.appendChild(inputBgColor);
+            // var inputBgColor = document.createElement('input')
+            // var textBgInput = document.querySelector('#input_bg');
+            // inputBgColor.setAttribute('type', 'hidden');
+            // inputBgColor.setAttribute('name', 'input_bg_color');
+            // inputBgColor.value = textBgInput.value;
+            // form.appendChild(inputBgColor);
 
             var headerTextColor = document.createElement('input')
             var headerTextColorInput = document.querySelector('#header_color');
@@ -465,6 +452,8 @@
 
             // add jobs
             var jobsInput = document.createElement('input');
+            jobsInput.setAttribute('name', 'jobs');
+            jobsInput.setAttribute('type', 'hidden');
             jobsInput.value = JSON.stringify(jobs);
             form.appendChild(jobsInput);
 

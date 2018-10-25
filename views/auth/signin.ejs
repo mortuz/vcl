@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+<% include ../partials/flash %>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-5">
+                <div class="card-body py-5">
+                    <h2 class="card-title">Sign in</h2>
+
+                    <form action="/auth/signin" method="POST">
+
+
+                        <div class="form-group">
+                            <label for="email" class="bmd-label-floating">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                            <span class="bmd-help">Can't be <strong>gmail</strong>, <strong>hotmail</strong>, <strong>live.com</strong>
+                                .</span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="password" class="bmd-label-floating">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+
+                        <p class="my-3"><a href="/auth/recover">Forgot password?</a></p>
+
+                        <!-- <div class="checkbox mt-3">
+                            <label>
+                                <input type="checkbox" name="remember" value="1"> remember me on this device
+                            </label>
+                        </div> -->
+
+                        <input type="submit" value="Sign in" class="btn btn-primary btn-raised mt-3">
+                    </form>
+
+                    Need an account? <a href="/auth/signup">Sign up</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <% include ../partials/footer %> -->

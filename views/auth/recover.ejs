@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+<% include ../partials/flash %>
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-5">
+                <div class="card-body py-5">
+                    <h2 class="card-title">Recover your account</h2>
+
+                    <form action="/auth/recover" method="POST">
+
+
+                        <div class="form-group">
+                            <label for="email" class="bmd-label-floating">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                        </div>
+
+                        <p class="my-3">Remember password? <a href="/auth/signin">Sign in.</a></p>
+
+                        <input type="submit" value="Recover" class="btn btn-primary btn-raised mt-3">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <% include ../partials/footer %> -->

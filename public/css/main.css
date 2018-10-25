@@ -1,3 +1,6 @@
+body{
+  background-color: #fff;
+}
 .mt-4 {
   margin-top: 1.25rem;
 }
@@ -51,7 +54,9 @@
   position: relative;
   text-align: center;
   width: 400px;
-  border: 1px solid rgb(63, 81, 181);
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
   border-top: none;
 }
 
@@ -126,19 +131,22 @@
 .other-job-input {
   margin-top: -16px;
   padding: 8px;
-  border: 1px solid rgb(63, 81, 181);
+  border-width: 1px;
+  border-style: solid;
   display: none;
 }
 .other-job-input.show {
-  display: block;
+  display: inline-block;
 }
 
 .job-select {
-  border: 1px solid rgb(63, 81, 181);
+  border-width: 1px;
+  border-style: solid;
   border-top-color: transparent;
 }
 .personal-info {
-  border: 1px solid rgb(63, 81, 181);
+  border-width: 1px;
+  border-style: solid;
   border-top: none;
   width: 400px;
 }
@@ -155,7 +163,11 @@
 }
 .personal-info input:last-of-type {
   border: none;
-  border-top: 1px solid rgb(63, 81, 181);
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-color: transparent;
 }
 
 .color-container label {
@@ -259,4 +271,23 @@
 }
 .f1-step.active p {
   color: var(--indigo);
+}
+
+.width-auto {
+  width: auto;
+}
+#accordion .btn-link {
+  text-decoration: none;  
+}
+#accordion .material-icons {
+  font-size: 14px;
+}
+.add {
+  display: none;
+}
+.collapsed .add {
+  display: inline;
+}
+.collapsed .minus {
+  display: none;
 }

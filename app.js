@@ -5,12 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
+var expressSession = require('express-session');
+var flash = require('express-flash');
+
+const MongoStore = require("connect-mongo")(expressSession);
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var create = require('./routes/widget/create');
-var widgetIndex = require('./routes/widget/index')
+var widgetIndex = require('./routes/widget/index');
+var widgetEdit = require('./routes/widget/edit');
 var render = require('./routes/render');
+var widget = require('./routes/widget')
+
+// auth
+var signin = require('./routes/auth/signin');
+var signup = require('./routes/auth/signup');
+var auth = require('./routes/auth');
+
 // var comic = require('./routes/comic');
 // var chapters = require('./routes/chapters');
 // var page = require('./routes/page');
@@ -23,9 +35,8 @@ var render = require('./routes/render');
 
 var app = express();
 mongoose.Promise = global.Promise;
-
 // development
-mongoose.connection.openUri('mongodb://localhost:27017/vlc', { useNewUrlParser: true }, function(err) {
+mongoose.connection.openUri('mongodb://localhost:27017/vcl', { useNewUrlParser: true }, function(err) {
     if (err) {
         console.log('Not connected to database', err);
     } else {
@@ -46,11 +57,18 @@ app.use(bodyParser.urlencoded({
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSession({ secret: 'superAwesome', saveUninitialized: false, resave: false, store: new MongoStore({ mongooseConnection: mongoose.connection }) }));
+app.use(flash());
 
 app.use('/', routes);
 app.use('/create', create);
 app.use('/widget/', widgetIndex);
+app.use('/widget/delete', widget);
+app.use('/widget/edit/', widgetEdit);
 app.use('/render', render);
+app.use('/auth', auth);
+app.use('/auth/signup', signup);
+app.use('/auth/signin', signin);
 // app.use('/comic', comic);
 // app.use('/chapters', chapters);
 // app.use('/page', page);

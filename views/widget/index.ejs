@@ -1,27 +1,7 @@
 <% include ../partials/header %>
 
-<nav class="navbar navbar-expand-xl navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">VLC</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <!-- <a class="nav-link" href="#"><i class="material-icons">more_vert</i></a> -->
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="material-icons">more_vert</i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Logout</a>
-                </div>
-            </li>
-
-        </ul>
-    </div>
-</nav>
+<% include ../partials/navigation %>
+<% include ../partials/flash %>
 
 <main class="main-container mt-5">
     <div class="container">
@@ -36,11 +16,11 @@
                         </div>
                         <div class="f1-step activated">
                             <div class="f1-step-icon"><i class="material-icons">account_box</i></div>
-                            <p>Register</p>
+                            <p>Register / Log in</p>
                         </div>
                         <div class="f1-step activated">
                             <div class="f1-step-icon"><i class="material-icons">filter_list</i></div>
-                            <p>Customize</p>
+                            <p>Create / Edit</p>
                         </div>
                         <div class="f1-step active">
                             <div class="f1-step-icon"><i class="material-icons">done_all</i></div>
@@ -60,6 +40,7 @@
         iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
         iframe.width = '1000';
         iframe.height = '800';
+        iframe.setAttribute('frameborder', '0');
     &lt;/script&gt;
                         </code></pre>
 
