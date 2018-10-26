@@ -16,7 +16,12 @@
 
                         <div class="form-group">
                             <label for="email" class="bmd-label-floating">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control  <% if (errors && errors.email) { %> is-invalid <% } %>" id="email" name="email">
+                            <% if (errors && errors.email) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.email %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <p class="my-3">Remember password? <a href="/auth/signin">Sign in.</a></p>

@@ -11,20 +11,30 @@
                 <div class="card-body py-5">
                     <h2 class="card-title">Sign up</h2>
 
-                    <form action="/auth/signup" method="POST">
+                    <form action="/auth/signup" method="POST" novalidate="novalidate">
 
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="fname" class="bmd-label-floating">First name</label>
-                                    <input type="text" class="form-control" id="fname" name="fname">
+                                    <label for="fname" class="bmd-label-floating">First name*</label>
+                                    <input required type="text" class="form-control <% if (errors && errors.fname) { %> is-invalid <% } %>" id="fname" name="fname" value="<%- value.fname || ''%>">
+                                    <% if (errors && errors.fname) {%>
+                                    <div class="invalid-feedback">
+                                        <%- errors.fname %>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                             <!--/.col-6-->
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="lname" class="bmd-label-floating">Last name</label>
-                                    <input type="text" class="form-control" id="lname" name="lname">
+                                    <label for="lname" class="bmd-label-floating">Last name*</label>
+                                    <input required type="text" class="form-control  <% if (errors && errors.lname) { %> is-invalid <% } %>" id="lname" name="lname" value="<%- value.lname || ''%>">
+                                    <% if (errors && errors.lname) {%>
+                                    <div class="invalid-feedback">
+                                        <%- errors.lname %>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                             <!--/.col-6-->
@@ -32,35 +42,65 @@
                         <!--/.row-->
 
                         <div class="form-group">
-                            <label for="company" class="bmd-label-floating">Company name</label>
-                            <input type="text" class="form-control" id="company" name="company">
+                            <label for="company" class="bmd-label-floating">Company name*</label>
+                            <input required type="text" class="form-control <% if (errors && errors.company) { %> is-invalid <% } %> " id="company" name="company" value="<%- value.company || ''%>">
+                            <% if (errors && errors.company) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.company %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <div class="form-group">
-                            <label for="position" class="bmd-label-floating">Position / Title</label>
-                            <input type="text" class="form-control" id="position" name="position">
+                            <label for="position" class="bmd-label-floating">Position / Title*</label>
+                            <input required type="text" class="form-control  <% if (errors && errors.position) { %> is-invalid <% } %>" id="position" name="position" value="<%- value.position || ''%>">
+                            <% if (errors && errors.position) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.position %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="bmd-label-floating">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <label for="email" class="bmd-label-floating">Email address*</label>
+                            <input required type="email" class="form-control  <% if (errors && errors.email) { %> is-invalid <% } %>" id="email" name="email" value="<%- value.email || ''%>">
+                            <% if (errors && errors.email) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.email %>
+                            </div>
+                            <% } %>
                             <span class="bmd-help">Can't be <strong>gmail</strong>, <strong>hotmail</strong>, <strong>live.com</strong>
                                 .</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone" class="bmd-label-floating">Phone no.</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
+                            <label for="phone" class="bmd-label-floating">Phone no.*</label>
+                            <input required type="text" class="form-control <% if (errors && errors.phone) { %> is-invalid <% } %>" id="phone" name="phone" value="<%- value.phone || ''%>">
+                            <% if (errors && errors.phone) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.phone %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <div class="form-group">
-                            <label for="password" class="bmd-label-floating">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="password" class="bmd-label-floating">Password*</label>
+                            <input required type="password" class="form-control   <% if (errors && errors.password) { %> is-invalid <% } %>" id="password" name="password">
+                            <% if (errors && errors.password) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.password %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <div class="form-group">
-                            <label for="confirm_password" class="bmd-label-floating">Confirm password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                            <label for="confirm_password" class="bmd-label-floating">Confirm password*</label>
+                            <input required type="password" class="form-control <% if (errors && errors.confirm_password) { %> is-invalid <% } %>" id="confirm_password" name="confirm_password">
+                            <% if (errors && errors.confirm_password) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.confirm_password %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <input type="submit" value="Sign up" class="btn btn-primary btn-raised mt-5">

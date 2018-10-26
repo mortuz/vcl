@@ -3,24 +3,35 @@ const router = express.Router();
 var User = require('../../models/user');
 
 router.get('/', function (req, res) {
-    res.render('auth/signin');
+    var errors = req.session.errors;
+    var value = req.session.formValues;
+    req.session.formValues = {};
+    req.session.errors = {};
+    res.render('auth/signin', { success: req.session.success, value: value, errors: errors });
 })
 
 router.post('/', function (req, res) {
     req.check('email', 'Invalid email address').isEmail();
-    req.check('password', 'Password must have atleast 4 characters').isLength({ min: 4 });
+    req.check('password', 'Password must have atleast 4 characters').isLength({ min: 6 });
 
     var errors = req.validationErrors();
     
     if (errors) {
-        console.log(errors);
+        var formatterErrors = {};
+        req.session.formValues = req.body;
+        errors.forEach(err => {
+            formatterErrors[err.param] = err.msg;
+        });
+        req.session.errors = formatterErrors;
+        
+        req.session.success = false;
         res.redirect('/auth/signin');
     } else {
-
+        req.session.success = true;
         User.findOne({email: req.body.email}, (err, user) => {
 
             if (err) {
-                req.flash('error', 'Email is not registered.');
+                req.flash('error', 'Enexpected error occured.');
                 // no user found
                 res.redirect("/auth/signin");
             } else {

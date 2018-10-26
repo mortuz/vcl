@@ -11,20 +11,31 @@
                 <div class="card-body py-5">
                     <h2 class="card-title">Sign in</h2>
 
-                    <form action="/auth/signin" method="POST">
+                    <form action="/auth/signin" method="POST" novalidate="novalidate">
 
 
                         <div class="form-group">
-                            <label for="email" class="bmd-label-floating">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <label for="email" class="bmd-label-floating">Email address*</label>
+                            <input type="email" class="form-control <% if (errors && errors.email) { %> is-invalid <% } %>" id="email" name="email" value="<%= value.email || '' %>" required>
+                            <% if (errors && errors.email) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.email %>
+                            </div>
+                            <% } %>
                             <span class="bmd-help">Can't be <strong>gmail</strong>, <strong>hotmail</strong>, <strong>live.com</strong>
                                 .</span>
+                                    
                         </div>
 
 
                         <div class="form-group">
-                            <label for="password" class="bmd-label-floating">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="password" class="bmd-label-floating">Password *</label>
+                            <input type="password" class="form-control <% if (errors && errors.email) { %> is-invalid <% } %>" id="password" name="password" required>
+                            <% if (errors && errors.password) {%>
+                            <div class="invalid-feedback">
+                                <%- errors.password %>
+                            </div>
+                            <% } %>
                         </div>
 
                         <p class="my-3"><a href="/auth/recover">Forgot password?</a></p>

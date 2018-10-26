@@ -43,7 +43,9 @@ router.get('/activate', function (req, res) {
 })
 
 router.get('/recover', (req, res) => {
-    res.render('auth/recover');
+    var errors = req.session.errors;
+    req.session.errors = {};
+    res.render('auth/recover', { errors: errors});
 });
 
 router.post('/recover', (req, res) => {
@@ -54,6 +56,11 @@ router.post('/recover', (req, res) => {
 
     if (errors) {
         req.session.errors = errors;
+        var formatterErrors = {};
+        errors.forEach(err => {
+            formatterErrors[err.param] = err.msg;
+        });
+        req.session.errors = formatterErrors;
         res.redirect('/auth/recover');
     } else {
         User.findOne({ 'email': email }, (err, user)=> {
@@ -80,22 +87,30 @@ router.post('/recover', (req, res) => {
 });
 
 router.get('/reset', (req, res) => {
-    var token = req.query.token;
+    var token = req.session.token || req.query.token;
+    var errors = req.session.errors;
+    req.session.errors = {};
 
-    res.render('auth/reset', { token: token });
+    res.render('auth/reset', { token: token, errors: errors });
 })
 
 router.post('/reset', (req, res) => {
     var token = req.body.token;
     req
-        .check("password", "Password must have atleast 4 characters")
-        .isLength({ min: 4 });
+    .check("password", "Password must have atleast 4 characters")
+    .isLength({ min: 4 });
     req.check("confirm_password", "Password do not match").matches(req.body.password);
-
+    
     var errors = req.validationErrors();
     if (errors) {
         // error messages
-        res.render("/auth/reset", { token: token });
+        var formatterErrors = {};
+        errors.forEach(err => {
+          formatterErrors[err.param] = err.msg;
+        });
+        req.session.errors = formatterErrors;
+        req.session.token = token;
+        res.redirect("/auth/reset");
     } else {
         //
         User.findOne({ 'recovery_token': token }, (err, user) => {

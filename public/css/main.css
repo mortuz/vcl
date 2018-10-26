@@ -58,6 +58,9 @@ body{
   border-style: solid;
   border-color: transparent;
   border-top: none;
+  border-left: 1px solid rgb(63, 81, 181);
+  border-right: 1px solid rgb(63, 81, 181);
+  border-bottom: 1px solid rgb(63, 81, 181);
 }
 
 .vcl-popover {
@@ -149,6 +152,11 @@ body{
   border-style: solid;
   border-top: none;
   width: 400px;
+  border-color: rgb(63, 81, 181);
+}
+.personal-info input.input-border {
+  border-top-color: rgb(63, 81, 181);
+  border-bottom-color: rgb(63, 81, 181);
 }
 
 .personal-info input {
@@ -158,10 +166,11 @@ body{
   appearance: none;
   text-indent: 8px;
 }
-.personal-info input:first-of-type {
+.personal-info input {
   border: none;
+  border-color: rgb(63, 81, 181);
 }
-.personal-info input:last-of-type {
+.personal-info input {
   border: none;
   border-top-width: 1px;
   border-top-style: solid;
@@ -290,4 +299,7 @@ body{
 }
 .collapsed .minus {
   display: none;
+}
+.custom-select.is-invalid:focus, .form-control.is-invalid:focus, .is-invalid.custom-file-control:focus, .was-validated .custom-file-control:invalid:focus, .was-validated .custom-select:invalid:focus, .was-validated .form-control:invalid:focus {
+    box-shadow: none;
 }
