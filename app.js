@@ -69,16 +69,6 @@ app.use('/render', render);
 app.use('/auth', auth);
 app.use('/auth/signup', signup);
 app.use('/auth/signin', signin);
-// app.use('/comic', comic);
-// app.use('/chapters', chapters);
-// app.use('/page', page);
-// app.use('/popular', popular);
-// app.use('/browse', browse);
-// // app.use('/push', push);
-// app.use('/latest', latest);
-// app.use('/trending', trending);
-// app.use('/auth', auth);
-// app.use('/user', user);
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {

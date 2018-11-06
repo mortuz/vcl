@@ -3,7 +3,7 @@ const router = express.Router();
 var User = require('../../models/user');
 
 router.get('/', function (req, res) {
-    var errors = req.session.errors;
+    var errors = req.session.errors || {};
     var value = req.session.formValues;
     req.session.formValues = {};
     req.session.errors = {};

@@ -8,29 +8,35 @@ var router = express.Router();
 
 router.get('/:id', (req, res) => {
     var id = req.param.id;
-    Form.findOne({_id: id}, (err, form) => {
-        if (err) {
-            throw err;
+    Form.findOne({ _id: req.params.id }, (err, form) => {
+      if (err) {
+        throw err;
+      } else {
+        if (!form) {
+          console.log(form);
+          req.flash("error", "Unable to perform this action.");
+          res.redirect("/widgets");
         } else {
-            if (!form) {
-                res.redirect('/widgets');
-            } else {
-                if (form.user != req.session.user) {
-                    // user not permitted
-                    res.redirect("/widgets");
-                } else {
-                    Form.deleteOne({ _id: id }, (err) => {
-                        if (err) {
-                            throw err;
-                        } else {
-                            // deleted 
-                            res.redirect('/widgets');
-                        }
-                    })
-                }
-            }
+          if (form.user != req.session.user) {
+            // user not permitted
+            req.flash("error", "You are not permitted!");
+            res.redirect("/widgets");
+          } else {
+            Form.deleteOne({ _id: id }, err => {
+              form.remove();
+              console.log();
+              if (err) {
+                throw err;
+              } else {
+                // deleted
+                req.flash("success", "Widget successfully deleted.");
+                res.redirect("/widgets");
+              }
+            });
+          }
         }
-    })
+      }
+    });
 })
 
 module.exports = router;
