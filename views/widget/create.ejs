@@ -260,6 +260,49 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="edit-job-modal" tabindex="-1" role="dialog" aria-labelledby="edit-job-modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-job-modal-title">Edit job</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group is-filled">
+                    <label for="edit_job_title" class="bmd-label-floating">Job title</label>
+                    <input type="hidden" id="edit_job_id">
+                    <input type="text" class="form-control" id="edit_job_title">
+                </div>
+
+                <div class="form-group is-filled">
+                    <label for="edit_job_email" class="bmd-label-floating">Email 1 (Where you want to receive
+                        applications)</label>
+                    <input type="text" class="form-control" id="edit_job_email">
+                </div>
+
+                <div class="form-group is-filled">
+                    <label for="edit_job_email2" class="bmd-label-floating">Email 2 (Where you want to receive
+                        applications)</label>
+                    <input type="text" class="form-control" id="edit_job_email2">
+                </div>
+
+                <div class="form-group is-filled">
+                    <label for="edit_job_description" class="bmd-label-floating">Description</label>
+                    <textarea class="form-control" rows="3" id="edit_job_description"></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-update">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var generateBtn = document.getElementById('generate');
 
@@ -280,8 +323,8 @@
                             </button>
                             
                             <span>
-                                <a href=""><i class="material-icons mr-3">edit</i></a>
-                                <a href=""><i class="material-icons mr-3">delete</i></a>
+                                 <a href="#" onclick="editJob(this)"  data-job="${job.id}"><i class="material-icons mr-3">edit</i></a>
+                                <a href="#" onclick="deleteJob(this)"  data-job="${job.id}"><i class="material-icons mr-3">delete</i></a>
                             </span>
                         </h5>
                     </div>
@@ -332,6 +375,86 @@
         populateJobs();
         $('.modal').modal('hide');
     });
+
+    function editJob(that) {
+            // console.log(job);
+            var jobId = $(that).attr('data-job');
+            console.log(jobs)
+            jobId = jobs.forEach(function (j, i) {
+                console.log(jobId)
+                if (j.id === jobId) {
+                    // jobs.splice(i, 1);
+                    $('#edit_job_id').val(j.id);
+                    $('#edit_job_title').val(j.title);
+                    $('#edit_job_email').val(j.email);
+                    $('#edit_job_email2').val(j.email2);
+                    $('#edit_job_description').html(j.description);
+
+                    setTimeout(function () {
+                        $("input[type!=checkbox], textarea").each(function () {
+                            if ($(this).val() && $(this).val() !== $(this).attr("value")) {
+                                $(this).trigger("change");
+                            }
+                        });
+                    }, 200);
+
+                    $('#edit-job-modal').modal('show');
+
+                }
+
+                // populateJobs();
+            });
+
+            return false;
+
+        }
+        function deleteJob(that) {
+            var choice = confirm("Are you sure want to delte the job?");
+
+            if (choice) {
+                var jobId = $(that).attr('data-job');
+                jobId = jobs.forEach(function (j, i) {
+
+                    if (j.id === jobId) {
+                        jobs.splice(i, 1);
+                    }
+
+                    populateJobs();
+                });
+            }
+
+            return false;
+
+        }
+
+        $('.btn-update').on('click', function (e) {
+                var id = $('#edit_job_id').val();
+                var title = $('#edit_job_title').val();
+                var email = $('#edit_job_email').val();
+                var email2 = $('#edit_job_email2').val();
+                var description = $('#job_description').val();
+
+                // generate random id
+
+                jobs.forEach(function (j, i) {
+                    if (j.id == id) {
+                        console.log(j)
+                        jobs[i].title = title;
+                        jobs[i].email = email;
+                        jobs[i].email2 = email2;
+                        jobs[i].description = description;
+                    }
+                });
+
+                $('#edit_job_title').val('');
+                $('#edit_job_email').val('');
+                $('#edit_job_email2').val('');
+                $('#edit_job_description').val('');
+
+                populateJobs();
+                $('#edit-job-modal').modal('hide');
+            });
+
 
     if(generateBtn) {
         generateBtn.onclick = function () {

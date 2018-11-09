@@ -1,4 +1,5 @@
-<% include ../partials/header %>
+<% include ../partials/widget-header %>
+<!-- <script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js" type="text/javascript"></script> -->
 
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -8,9 +9,9 @@
                 <!-- Your content goes here -->
                 <!-- Flat button with ripple -->
 
-                <div class="container">
-                    <div class="col-md-6 offset-md-3">
-                        <p>Powered by <a href="https://fidiyo.com">Fidiyo</a></p>
+                <div class="">
+                    <div class="">
+                        <p class="text-right branding">Powered by <a href="https://fidiyo.com">Fidiyo</a></p>
                         <div class="vcl-container">
                             <div class="vcl-header" style="background-color:<%= form.colors.theme_color %>">
                                 <span contenteditable="false" class="header-text" style="color:<%= form.colors.header_text_color %>"><%= form.header %></span>
@@ -32,7 +33,21 @@
                                 </div>
                             </div>
                             <div class="vcl-body" style="border-color:<%= form.colors.theme_color %>">
-                                this section will appear through API
+                                <record></record>
+                                <script> //something goes wrong with refreshing page, and loading sequentially. might need to move the loading of kurento to here.
+                                    window.sock = "wss://squirls.squirrelsquad.me:8443/recording";
+                                    window.K_adapter = "https://squirls.squirrelsquad.me:443//assets/bower_components/adapter.js/adapter-b863d9d7b99d48b14b032bd9ba5c1012364336d983ecd7c9cd2ba9df0168b6a3.js";
+                                    window.K_util = "https://squirls.squirrelsquad.me:443//assets/bower_components/kurento-utils/js/kurento-utils-e2968a6aac734dbde681301168cc31dc624b0a2e9038dded6374382b2d07d52f.js";
+                                    window.K_webadapt = "https://squirls.squirrelsquad.me:443//assets/bower_components/webrtc-adapter/release/adapter-daefa3a263d3c84764d97872856b76b0c0926cfb9f8b831b2774e9e5eccac045.js";
+                                    window.Host = "squirls.squirrelsquad.me";
+                                    window.sessionid = "";
+                                    var head = document.getElementsByTagName('head')[0];
+                                    var js = document.createElement("script");
+
+                                    js.type = "text/javascript";
+                                    js.src = "https://api.squirrelsquad.me/packs/w_recording_hub-86a3272ca985ca80a8a1.js"
+                                    head.appendChild(js);
+                                </script>
 
                             </div>
                             <div class="vcl-attach" onclick="openAttachBox()" id="vcl-attach-div" style="border-color:<%= form.colors.theme_color %>;background-color:<%= form.colors.input_bg_color %>;color:<%= form.colors.input_text_color %>">
