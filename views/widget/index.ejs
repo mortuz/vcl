@@ -37,7 +37,7 @@
                     <pre><code class="javascript js-highlight">    &lt;script&gt;
         var iframe = document.createElement('iframe');
         document.body.appendChild(iframe);
-        iframe.src = '<%= 'http://localhost:3000/render?id=' + id %>';
+        iframe.src = '<%= baseUrl + '/render?id=' + id %>';
         iframe.width = '1000';
         iframe.height = '800';
         iframe.setAttribute('frameborder', '0');

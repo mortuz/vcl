@@ -36,7 +36,8 @@ var auth = require('./routes/auth');
 var app = express();
 mongoose.Promise = global.Promise;
 // development
-mongoose.connection.openUri('mongodb://localhost:27017/vcl', { useNewUrlParser: true }, function(err) {
+var dbUri = (app.get("env") === "development") ? 'mongodb://localhost:27017/vcl' : 'mongodb://idevia:idevia123@ds111963.mlab.com:11963/vcl-api';
+mongoose.connection.openUri(dbUri, { useNewUrlParser: true }, function(err) {
     if (err) {
         console.log('Not connected to database', err);
     } else {
@@ -44,6 +45,9 @@ mongoose.connection.openUri('mongodb://localhost:27017/vcl', { useNewUrlParser: 
     }
 });
 
+
+const yes = require("yes-https");
+app.use(yes());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

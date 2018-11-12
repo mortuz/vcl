@@ -16,11 +16,11 @@
 
                         <div class="form-group">
                             <label for="email" class="bmd-label-floating">Email address*</label>
-                            <input type="email" class="form-control <% if (errors && errors.email) { %> is-invalid <% } %>" id="email" name="email" value="<%= value.email || '' %>" required>
-                            <% if (errors && errors.email) {%>
-                            <div class="invalid-feedback">
-                                <%- errors.email %>
-                            </div>
+                            <input type="email" class="form-control <% if (errors && typeof errors.email != 'undefined') { %> is-invalid <% } %>" id="email" name="email" value="<%= value.email || '' %>" required>
+                            <% if (errors && typeof errors.email != 'undefined') { %>
+                                <div class="invalid-feedback">
+                                    <%= errors.email %>
+                                </div>
                             <% } %>
                             <span class="bmd-help">Can't be <strong>gmail</strong>, <strong>hotmail</strong>, <strong>live.com</strong>
                                 .</span>
@@ -30,7 +30,7 @@
 
                         <div class="form-group">
                             <label for="password" class="bmd-label-floating">Password *</label>
-                            <input type="password" class="form-control <% if (errors && errors.email) { %> is-invalid <% } %>" id="password" name="password" required>
+                            <input type="password" class="form-control <% if (errors && errors.password) { %> is-invalid <% } %>" id="password" name="password" required>
                             <% if (errors && errors.password) {%>
                             <div class="invalid-feedback">
                                 <%- errors.password %>

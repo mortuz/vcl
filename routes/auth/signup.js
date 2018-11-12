@@ -7,10 +7,11 @@ var User = require('../../models/user');
 var mailer = require('../../utils/mailer');
 
 router.get('/', function(req, res) {
-    var errors = req.session.errors;
-    var value = req.session.formValues;
+    var errors = req.session.errors || {};
+    var value = req.session.formValues || {};
     req.session.errors = {};
     req.session.formValues = {};
+    console.log(errors);
     res.render('auth/signup', { errors: errors, value: value });
 })
 
@@ -60,8 +61,10 @@ router.post('/', function(req, res) {
                 console.log(err);
             } else {
                 // send email
+                var app = express();
+                var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
                 var emailContent = `
-                <p>Welocome to <strong>VCL</strong>. Activate your account http://localhost:3000/auth/activate/?token=${token}
+                <p>Welocome to <strong>VCL</strong>. Activate your account <a href="${baseUrl}/auth/activate/?token=${token}">${baseUrl}/auth/activate/?token=${token}</a>
             `;
                 mailer.sendMail(req.body.email, 'Welcome to VCL', emailContent);
 
