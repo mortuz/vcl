@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Form = require('../models/form');
+var app = express();
 
 router.get('/', function(req, res){
-    // 5b8624dd482a7c05a4360171
-    // console.log(req.query.id);
     var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
     Form.findOne({ _id: req.query.id }, (err, form) => {
         res.render('render/index.ejs', { form: form, baseUrl: baseUrl });

@@ -46,6 +46,7 @@ router.post('/', function (req, res) {
 
                     if (!validPassword) {
                         // password do not match
+                        req.flash("error", "Invalid credentials.");
                         res.redirect("/auth/signin");
                     } else {
                         // log user in

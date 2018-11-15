@@ -44,8 +44,9 @@
           <ul class="list-group">
             <% forms.forEach(function(form, index) { %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              <a href="/widget/<%= form.id%>"><%= form.name%></a>
+              <%= form.name%>
               <div>
+                <a href="/widget/<%= form.id%>" class="mr-1"><i class="material-icons mr-3">code</i></a>
                 <a href="/widget/edit/<%= form.id %>" class="mr-1"><i class="material-icons mr-3">edit</i></a>
                 <a href="/widget/delete/<%= form.id %>" class="btn-delete mr-1"><i class="material-icons mr-3">delete</i></a>
               </div>

@@ -192,6 +192,9 @@ body{
   display: none;
 }
 
+.btn.has-icon i{
+  font-size: 13px;
+}
 /* STEPERS */
 .f1 {
   padding: 25px;

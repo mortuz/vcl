@@ -3,7 +3,7 @@ const router = express.Router();
 var mailer = require("../utils/mailer");
 var jwt = require("jsonwebtoken");
 var secret = "ssshhhhkoihai";
-
+var app = express();
 var User = require('../models/user');
 
 router.get('/activate', function (req, res) {
@@ -12,8 +12,6 @@ router.get('/activate', function (req, res) {
     User.findOne({ active_token: token }, (err, user) => {
         
         if (user) {
-            console.log(user);
-
             // verify a token symmetric
             jwt.verify(token, secret, function (err, decoded) {
 
@@ -28,6 +26,7 @@ router.get('/activate', function (req, res) {
                     console.log(user);
 
                     res.redirect("/auth/signin");
+                    req.flash('success', 'Your account is activated.');
 
                 } else {
                     // redirect to 404
@@ -77,8 +76,11 @@ router.post('/recover', (req, res) => {
                     user.recovery_token = token;
                     user.save();
 
-                    mailer.sendMail(email, 'VCL Password Recover', '<p>To recover your account click <a href="http://localhost:3000/auth/reset?token='+ token +'">here</a>.</p>');
+                    var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
+
+                    mailer.sendMail(email, 'VCL Password Recover', `<p>To recover your account click <a href="${baseUrl}/auth/reset?token=${token}">here</a>.</p>`);
                     // flash message instructions send
+                    req.flash("info", "Instructions have been sent to your email.");
                     res.redirect('/auth/recover');
                 }
             }

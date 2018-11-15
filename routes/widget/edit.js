@@ -17,15 +17,11 @@ router.post('/', function (req, res) {
     if (err)
     console.log(err);
 
-    form.name = req.body.name || 'Untitled';
+    form.name = req.body.name;
     form.jobs = req.body.jobs;
     form.header = req.body.header;
     form.attach = req.body.attach;
-    form.question1 = req.body.q1;
-    form.question2 = req.body.q2;
-    form.question3 = req.body.q3;
-    form.question4 = req.body.q4;
-    form.question4 = req.body.q4;
+    form.questions = req.body.questions;
     form.colors.theme_color = req.body.theme_color;
     form.colors.input_text_color = req.body.input_text_color;
     form.colors.header_text_color = req.body.header_text_color;
@@ -34,15 +30,15 @@ router.post('/', function (req, res) {
 
     form.save((err, form) => {
       if (err) {
-        req.flash('error', 'Unable to save changes. Try again!');
+        req.flash("error", "Unable to update widget.");
         res.render('widget/edit', {
           errors: err,
-          data: form
+          form: form
         });
         // console.log(err);
       } else {
         // console.log(form);
-        req.flash('success', 'Widget updated!');
+        req.flash("success", "No need to update your code, your changes are automatically linked to the original code.");
         res.redirect('/widgets');
       }
     })

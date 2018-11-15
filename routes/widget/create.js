@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Form = require('../../models/form');
-
+var app = express();
 router.get('/', function (req, res){
     res.render('widget/create', { title: 'VCL' });
 });
@@ -9,18 +9,13 @@ router.get('/', function (req, res){
 router.post('/', function(req, res) {
     // console.log(req.body.header);
     var form = new Form();
-    form.name = req.body.name || 'Untitled';
+    form.name = req.body.name;
     form.jobs = req.body.jobs;
     form.header = req.body.header;
     form.attach = req.body.attach;
-    form.question1 = req.body.q1;
-    form.question2 = req.body.q2;
-    form.question3 = req.body.q3;
-    form.question4 = req.body.q4;
-    form.question4 = req.body.q4;
+    form.questions = req.body.questions;
     form.colors.theme_color = req.body.theme_color;
     form.colors.input_text_color = req.body.input_text_color;
-    // form.colors.input_bg_color = req.body.input_bg_color;
     form.colors.header_text_color = req.body.header_text_color;
     form.colors.popover_text_color = req.body.popover_text_color;
     form.colors.popover_bg_color = req.body.popover_bg_color;
@@ -34,8 +29,9 @@ router.post('/', function(req, res) {
             });
             console.log(err);
         } else {
+            var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
             // console.log(form);
-            res.render('widget/index', { id: form._id });
+            res.render('widget/index', { id: form._id, baseUrl: baseUrl });
         }
     })
     

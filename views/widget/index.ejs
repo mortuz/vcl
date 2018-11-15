@@ -34,6 +34,8 @@
         
             <div class="row">
                 <div class="col-md-8 offset-md-2">
+                    <a href="/" class="btn btn-primary has-icon btn-raised mb-3"><i class="material-icons">arrow_back_ios</i> Back to home</a>
+
                     <pre><code class="javascript js-highlight">    &lt;script&gt;
         var iframe = document.createElement('iframe');
         document.body.appendChild(iframe);
@@ -45,7 +47,9 @@
     &lt;/script&gt;
                         </code></pre>
 
-                        <button class="btn btn-primary btn-raised">Copy code</button>
+                        <button class="btn btn-primary btn-raised" onclick="copyCode()">Copy code</button>
+
+                        <span class="message text-info d-block"></span>
                 </div>
             </div>
         </div>
@@ -53,8 +57,44 @@
     </div>
 </main>
 
+<div hidden id="code-to-copy">
+    <!-- <script>
+        var iframe = document.createElement('iframe');
+        document.body.appendChild(iframe);
+        iframe.src = 'http://localhost:3000/render?id=<%-id %>';
+        iframe.width = '1000';
+        iframe.height = '800';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'camera; microphone');
+    </script> -->
+</div>
+
 <script>
     $('.js-highlight').each(function (i, block) {
         hljs.highlightBlock(block);
     });
+
+    function copyCode () {
+     var html = `<script>
+        var iframe = document.createElement("iframe");
+        document.body.appendChild(iframe);
+        iframe.src = "http://localhost:3000/render?id=<%-id %>";
+        iframe.width = "1000";
+        iframe.height = "800";
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allow", "camera; microphone");
+    <\/script>`;
+        
+    const el = document.createElement('textarea');
+        el.value = html;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
+        $('.message').html('Copied');
+
+        console.log('copied');
+    }
+
 </script>

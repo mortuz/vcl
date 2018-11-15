@@ -93,6 +93,14 @@
                                     <label for="pop_text">Box text</label>
                                     <input type="color" onchange="popoverTextColorChanged(this.value)" name="pop_text" id="pop_text" value="#222222">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="pop-questions">Questions</label>
+                                    <textarea rows="6" onkeyup="questionsChange(this.value)" class="form-control pop_questions" name="pop_questions" id="pop_questions">1. Tell us about 3 skills you have that match this job
+2. Tell us about a prior job or experience and how it prepares you for this job
+3. Enter another question</textarea>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -108,39 +116,6 @@
                         <div id="job-customizer" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-job">
                             <div class="card-body">
                                 <div id="accordion-job" class="mb-3">
-                                    <!-- <div class="card">
-                                        <div class="card-header" id="headingOne">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">
-                                                    Job one
-                                                </button>
-                                            </h5>
-                                        </div>
-                                
-                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-job">
-                                            <div class="card-body">
-                                                We are looking for some experienced developers who are experienced with Bootstrap, jQuery and
-                                                Angular.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="headingTwo">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">
-                                                    Job two
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-job">
-                                            <div class="card-body">
-                                                We are looking for some experienced developers who are experienced with PHP, Nodejs and
-                                                Photoshop.
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-raised" data-toggle="modal" data-target="#add-job-modal">
@@ -160,11 +135,11 @@
                 <div id="widget">
                     <div class="vcl-container">
                         <div class="vcl-header">
-                            <span contenteditable="true" class="header-text">Record your video cover letter</span>
+                            <span contenteditable="true" class="header-text">Record Your Video Cover Letter</span>
                             <i class="material-icons">info</i>
                         </div>
                         <div class="vcl-body">
-                            this section will appear through API
+                            Video Recording Screen
                         </div>
                         <div class="vcl-attach"><span class="attach-text" contenteditable="true">attach your resume</span> <i class="material-icons">attach_file</i></div>
                     
@@ -181,10 +156,11 @@
                         <div class="btn btn-raised btn-primary float-right" id="submit-btn">Submit</div>
                     </div>
                     <div class="vcl-popover">
-                        <p class="q1" contenteditable="true">Ask our first question</p>
-                        <p class="q2" contenteditable="true">Ask our second question</p>
-                        <p class="q3" contenteditable="true">Ask our second question</p>
-                        <p class="q4" contenteditable="true">Ask our second question</p>
+                        <p class="questions">
+                            1. Tell us about 3 skills you have that match this job <br>
+                            2. Tell us about a prior job or experience and how it prepares you for this job <br>
+                            3. Enter another question
+                        </p>
                     </div>
                 </div>
             </div>
@@ -221,6 +197,7 @@
 </main>
 
 <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="add-job-modal" tabindex="-1" role="dialog" aria-labelledby="add-job-modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -234,22 +211,32 @@
 
                 <div class="form-group">
                     <label for="job_title" class="bmd-label-floating">Job title</label>
-                    <input type="text" class="form-control" id="job_title">
+                    <input type="text" class="form-control is-invalid" id="job_title">
+                    <div class="invalid-feedback invalid-title"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="job_email" class="bmd-label-floating">Email 1 (Where you want to receive applications?)</label>
-                    <input type="text" class="form-control" id="job_email">
+                    <label for="job_location" class="bmd-label-floating">Job location</label>
+                    <input type="text" class="form-control is-invalid" id="job_location">
+                    <div class="invalid-feedback invalid-location"></div>
                 </div>
 
                 <div class="form-group">
-                    <label for="job_email2" class="bmd-label-floating">Email 2 (Where you want to receive applications?)</label>
-                    <input type="text" class="form-control" id="job_email2">
+                    <label for="job_email" class="bmd-label-floating">Email 1 (Where you want to receive applications)</label>
+                    <input type="text" class="form-control is-invalid" id="job_email">
+                    <div class="invalid-feedback invalid-email"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="job_email2" class="bmd-label-floating">Email 2 (Where you want to receive applications)</label>
+                    <input type="text" class="form-control is-invalid" id="job_email2">
+                    <div class="invalid-feedback invalid-email2"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="job_description" class="bmd-label-floating">Description</label>
-                    <textarea class="form-control" rows="3" id="job_description"></textarea>
+                    <textarea class="form-control is-invalid" rows="3" id="job_description"></textarea>
+                    <div class="invalid-feedback invalid-description"></div>
                 </div>
 
             </div>
@@ -275,24 +262,37 @@
                 <div class="form-group is-filled">
                     <label for="edit_job_title" class="bmd-label-floating">Job title</label>
                     <input type="hidden" id="edit_job_id">
-                    <input type="text" class="form-control" id="edit_job_title">
+                    <input type="text" class="form-control is-invalid" id="edit_job_title">
+                    <div class="invalid-feedback invalid-title"></div>
+                </div>
+
+                <div class="form-group is-filled">
+                    <label for="edit_job_location" class="bmd-label-floating">Job location</label>
+                    <input type="text" class="form-control is-invalid" id="edit_job_location">
+                    <div class="invalid-feedback invalid-location"></div>
+
                 </div>
 
                 <div class="form-group is-filled">
                     <label for="edit_job_email" class="bmd-label-floating">Email 1 (Where you want to receive
                         applications)</label>
-                    <input type="text" class="form-control" id="edit_job_email">
+                    <input type="text" class="form-control is-invalid" id="edit_job_email">
+                    <div class="invalid-feedback invalid-email"></div>
+
                 </div>
 
                 <div class="form-group is-filled">
                     <label for="edit_job_email2" class="bmd-label-floating">Email 2 (Where you want to receive
                         applications)</label>
-                    <input type="text" class="form-control" id="edit_job_email2">
+                    <input type="text" class="form-control is-invalid" id="edit_job_email2">
+                    <div class="invalid-feedback invalid-email2"></div>
+
                 </div>
 
                 <div class="form-group is-filled">
                     <label for="edit_job_description" class="bmd-label-floating">Description</label>
-                    <textarea class="form-control" rows="3" id="edit_job_description"></textarea>
+                    <textarea class="form-control is-invalid" rows="3" id="edit_job_description"></textarea>
+                    <div class="invalid-feedback invalid-description"></div>
                 </div>
 
             </div>
@@ -349,11 +349,61 @@
         var title = $('#job_title').val();
         var email = $('#job_email').val();
         var email2 = $('#job_email2').val();
+        var location = $('#job_location').val();
         var description = $('#job_description').val();
 
         // generate random id
         var id = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        var hasError = false;
+        var errorMessages = {};
+
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var isValidEmail = re.test(String(email).toLowerCase());
+
+        if (!isValidEmail) {
+            hasError = true;
+            errorMessages.email = "Email is not valid";
+        }
+
+        if (!title) {
+            hasError = true;
+            errorMessages.title = "Title must not be empty";
+        }
+
+        if (!location) {
+            hasError = true;
+            errorMessages.location = "Location must not be empty";
+        }
+
+        if (!description) {
+            hasError = true;
+            errorMessages.description = "Description must not be empty";
+        }
+
+        if (email2) {
+            var isValidEmail2 = re.test(String(email).toLowerCase());
+
+            if (!isValidEmail2) {
+                hasError = true;
+                errorMessages.email2 = "Email2 is not valid";
+            }
+        }
+
+
+        // generate random id
+        if (hasError) {
+            $('#add-job-modal').find('.invalid-description').html(errorMessages.description || '');
+            $('#add-job-modal').find('.invalid-title').html(errorMessages.title || '');
+            $('#add-job-modal').find('.invalid-email').html(errorMessages.email || '');
+            $('#add-job-modal').find('.invalid-email2').html(errorMessages.email2 || '');
+            $('#add-job-modal').find('.invalid-location').html(errorMessages.location || '');
+            console.log(errorMessages);
+            return;
+        }
+
+        $('#add-job-modal').find('invalid-feedback').html('');
 
         for (var i = 0; i < 5; i++)
             id += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -363,12 +413,14 @@
             title: title,
             email: email,
             email2: email2,
+            location: location,
             description: description
         });
 
         $('#job_title').val('');
         $('#job_email').val('');
         $('#job_email2').val('');
+        $('#job_location').val('');
         $('#job_description').val('');
         
 
@@ -377,37 +429,38 @@
     });
 
     function editJob(that) {
-            // console.log(job);
-            var jobId = $(that).attr('data-job');
-            console.log(jobs)
-            jobId = jobs.forEach(function (j, i) {
-                console.log(jobId)
-                if (j.id === jobId) {
-                    // jobs.splice(i, 1);
-                    $('#edit_job_id').val(j.id);
-                    $('#edit_job_title').val(j.title);
-                    $('#edit_job_email').val(j.email);
-                    $('#edit_job_email2').val(j.email2);
-                    $('#edit_job_description').html(j.description);
+        // console.log(job);
+        var jobId = $(that).attr('data-job');
+        console.log(jobs)
+        jobId = jobs.forEach(function (j, i) {
+            if (j.id === jobId) {
+                console.log(j)
+                // jobs.splice(i, 1);
+                $('#edit_job_id').val(j.id);
+                $('#edit_job_title').val(j.title);
+                $('#edit_job_email').val(j.email);
+                $('#edit_job_email2').val(j.email2);
+                $('#edit_job_location').val(j.location);
+                $('#edit_job_description').val(j.description);
 
-                    setTimeout(function () {
-                        $("input[type!=checkbox], textarea").each(function () {
-                            if ($(this).val() && $(this).val() !== $(this).attr("value")) {
-                                $(this).trigger("change");
-                            }
-                        });
-                    }, 200);
+                setTimeout(function () {
+                    $("input[type!=checkbox], textarea").each(function () {
+                        if ($(this).val() && $(this).val() !== $(this).attr("value")) {
+                            $(this).trigger("change");
+                        }
+                    });
+                }, 200);
 
-                    $('#edit-job-modal').modal('show');
+                $('#edit-job-modal').modal('show');
 
-                }
+            }
 
-                // populateJobs();
-            });
+            // populateJobs();
+        });
 
-            return false;
+        return false;
 
-        }
+    }
         function deleteJob(that) {
             var choice = confirm("Are you sure want to delete the job?");
 
@@ -428,11 +481,64 @@
         }
 
         $('.btn-update').on('click', function (e) {
-                var id = $('#edit_job_id').val();
-                var title = $('#edit_job_title').val();
-                var email = $('#edit_job_email').val();
-                var email2 = $('#edit_job_email2').val();
-                var description = $('#job_description').val();
+            var id = $('#edit_job_id').val();
+            var title = $('#edit_job_title').val();
+            var email = $('#edit_job_email').val();
+            var email2 = $('#edit_job_email2').val();
+            var location = $('#edit_job_location').val();
+            var description = $('#edit_job_description').val();
+
+
+            var hasError = false;
+            var errorMessages = {};
+
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var isValidEmail = re.test(String(email).toLowerCase());
+
+            if (!isValidEmail) {
+                hasError = true;
+                errorMessages.email = "Email is not valid";
+            }
+
+            if (!title) {
+                hasError = true;
+                errorMessages.title = "Title must not be empty";
+            }
+
+            if (!location) {
+                hasError = true;
+                errorMessages.location = "Location must not be empty";
+            }
+
+            if (!description) {
+                hasError = true;
+                errorMessages.description = "Description must not be empty";
+            }
+
+            if (email2) {
+                var isValidEmail2 = re.test(String(email).toLowerCase());
+
+                if (!isValidEmail2) {
+                    hasError = true;
+                    errorMessages.email2 = "Email2 is not valid";
+                }
+            }
+
+
+            // generate random id
+            if (hasError) {
+                $('#edit-job-modal').find('.invalid-description').html(errorMessages.description || '');
+                $('#edit-job-modal').find('.invalid-title').html(errorMessages.title || '');
+                $('#edit-job-modal').find('.invalid-email').html(errorMessages.email || '');
+                $('#edit-job-modal').find('.invalid-email2').html(errorMessages.email2 || '');
+                $('#edit-job-modal').find('.invalid-location').html(errorMessages.location || '');
+                console.log(errorMessages);
+                return;
+            }
+
+            $('#edit-job-modal').find('invalid-feedback').html('');
+
+
 
                 // generate random id
 
@@ -442,6 +548,7 @@
                         jobs[i].title = title;
                         jobs[i].email = email;
                         jobs[i].email2 = email2;
+                        jobs[i].location = location;
                         jobs[i].description = description;
                     }
                 });
@@ -449,6 +556,7 @@
                 $('#edit_job_title').val('');
                 $('#edit_job_email').val('');
                 $('#edit_job_email2').val('');
+                $('#edit_job_location').val('');
                 $('#edit_job_description').val('');
 
                 populateJobs();
@@ -500,35 +608,11 @@
 
             // question 1
             var q1Text = document.createElement('input')
-            var q1 = document.querySelector('.q1');
+            var q1 = document.querySelector('.pop_questions');
             q1Text.setAttribute('type', 'hidden');
-            q1Text.setAttribute('name', 'q1');
-            q1Text.value = q1.innerHTML;
+            q1Text.setAttribute('name', 'questions');
+            q1Text.value = q1.value;
             form.appendChild(q1Text);
-
-            // question 2
-            var q2Text = document.createElement('input')
-            var q2 = document.querySelector('.q2');
-            q2Text.setAttribute('type', 'hidden');
-            q2Text.setAttribute('name', 'q2');
-            q2Text.value = q2.innerHTML;
-            form.appendChild(q2Text);
-
-            // question 3
-            var q3Text = document.createElement('input')
-            var q3 = document.querySelector('.q3');
-            q3Text.setAttribute('type', 'hidden');
-            q3Text.setAttribute('name', 'q3');
-            q3Text.value = q3.innerHTML;
-            form.appendChild(q3Text);
-
-            // question 4
-            var q4Text = document.createElement('input')
-            var q4 = document.querySelector('.q4');
-            q4Text.setAttribute('type', 'hidden');
-            q4Text.setAttribute('name', 'q4');
-            q4Text.value = q4.innerHTML;
-            form.appendChild(q4Text);
 
             // color inputs
             var themeColor = document.createElement('input')
@@ -586,6 +670,14 @@
         }
         
     };
+
+
+    function questionsChange(e){
+        console.log(e)
+        var value = e;
+        var html = e.split('\n').join('<br>')
+        $('.questions').html(html);
+    }
     
     // color picker functions
     function themeColorChanged(value) {
