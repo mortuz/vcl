@@ -29,8 +29,8 @@ router.post('/', function(req, res) {
             });
             console.log(err);
         } else {
-            var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
             // console.log(form);
+            var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
             res.render('widget/index', { id: form._id, baseUrl: baseUrl });
         }
     })

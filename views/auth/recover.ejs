@@ -19,7 +19,7 @@
                             <input type="email" class="form-control  <% if (errors && errors.email) { %> is-invalid <% } %>" id="email" name="email">
                             <% if (errors && errors.email) {%>
                             <div class="invalid-feedback">
-                                <%- errors.email %>
+                                <%- errors.email.msg %>
                             </div>
                             <% } %>
                         </div>

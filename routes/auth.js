@@ -16,17 +16,13 @@ router.get('/activate', function (req, res) {
             jwt.verify(token, secret, function (err, decoded) {
 
                 var email = decoded.email;
-                console.log(email);
 
                 if (email == user.email) {
                     // activate user
-                    console.log('activate user')
                     user.active_token = '';
                     user.save();
-                    console.log(user);
-
-                    res.redirect("/auth/signin");
                     req.flash('success', 'Your account is activated.');
+                    res.redirect("/auth/signin");
 
                 } else {
                     // redirect to 404
@@ -42,7 +38,7 @@ router.get('/activate', function (req, res) {
 })
 
 router.get('/recover', (req, res) => {
-    var errors = req.session.errors;
+    var errors = req.session.errors || {};
     req.session.errors = {};
     res.render('auth/recover', { errors: errors});
 });
@@ -64,11 +60,13 @@ router.post('/recover', (req, res) => {
     } else {
         User.findOne({ 'email': email }, (err, user)=> {
             if (err) {
+                req.flash("error", "Unexpected error occured.");
                 req.session.errors = [{"msg": "Unexpected error occured"}]
                 res.redirect('/auth/recover');
             } else {
                 if (!user) {
-                    req.session.errors = [{ "msg": "Email not registered" }]
+                    req.flash("error", "Email not registered.");
+                    req.session.errors = [{ "msg": "Email not registered." }]
                     res.redirect('/auth/recover');
                 } else {
                     var token = jwt.sign({ email: email }, secret);
@@ -90,7 +88,7 @@ router.post('/recover', (req, res) => {
 
 router.get('/reset', (req, res) => {
     var token = req.session.token || req.query.token;
-    var errors = req.session.errors;
+    var errors = req.session.errors || {};
     req.session.errors = {};
 
     res.render('auth/reset', { token: token, errors: errors });

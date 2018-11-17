@@ -2,6 +2,8 @@ const express = require('express');
 var router = express.Router();
 var Form = require("../../models/form");
 
+var app = express();
+
 router.get('/:id', function(req, res) {
     Form.findOne({ _id: req.params.id }, (err, form) => {
       console.log(form);
@@ -37,9 +39,9 @@ router.post('/', function (req, res) {
         });
         // console.log(err);
       } else {
-        // console.log(form);
         req.flash("success", "No need to update your code, your changes are automatically linked to the original code.");
-        res.redirect('/widgets');
+        var baseUrl = app.get("env") === "development" ? "http://localhost:3000" : "https://vcl.fidiyo.com";
+        res.render('widget/index', { id: req.body.form_id, baseUrl: baseUrl });
       }
     })
 
